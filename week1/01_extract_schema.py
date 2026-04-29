@@ -16,10 +16,9 @@ from mysql.connector import Error
 # Servera pieslēguma parametri
 DB_CONFIG = {
     "host": "87.110.123.151",
-    "port": 3306,
     "user": "fita",
     "password": "2026-04-28",
-    "connection_timeout": 10,  # pārtraukt mēģinājumu pēc 10 sekundēm
+    "connection_timeout": 10,
 }
 
 

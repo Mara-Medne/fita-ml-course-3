@@ -1,0 +1,155 @@
+{
+  "database": "direct_payments",
+  "tables": [
+    {
+      "name": "mandates",
+      "comment": "",
+      "row_count": 9381,
+      "columns": [
+        {
+          "COLUMN_NAME": "id",
+          "DATA_TYPE": "varchar",
+          "IS_NULLABLE": "YES",
+          "COLUMN_KEY": "",
+          "COLUMN_DEFAULT": null,
+          "COLUMN_COMMENT": "",
+          "CHARACTER_MAXIMUM_LENGTH": 50
+        },
+        {
+          "COLUMN_NAME": "created_at",
+          "DATA_TYPE": "datetime",
+          "IS_NULLABLE": "YES",
+          "COLUMN_KEY": "",
+          "COLUMN_DEFAULT": null,
+          "COLUMN_COMMENT": "",
+          "CHARACTER_MAXIMUM_LENGTH": null
+        },
+        {
+          "COLUMN_NAME": "scheme",
+          "DATA_TYPE": "varchar",
+          "IS_NULLABLE": "YES",
+          "COLUMN_KEY": "",
+          "COLUMN_DEFAULT": null,
+          "COLUMN_COMMENT": "",
+          "CHARACTER_MAXIMUM_LENGTH": 50
+        },
+        {
+          "COLUMN_NAME": "organisation_id",
+          "DATA_TYPE": "varchar",
+          "IS_NULLABLE": "YES",
+          "COLUMN_KEY": "",
+          "COLUMN_DEFAULT": null,
+          "COLUMN_COMMENT": "",
+          "CHARACTER_MAXIMUM_LENGTH": 50
+        }
+      ],
+      "foreign_keys": []
+    },
+    {
+      "name": "organisations",
+      "comment": "",
+      "row_count": 431,
+      "columns": [
+        {
+          "COLUMN_NAME": "id",
+          "DATA_TYPE": "varchar",
+          "IS_NULLABLE": "YES",
+          "COLUMN_KEY": "",
+          "COLUMN_DEFAULT": null,
+          "COLUMN_COMMENT": "",
+          "CHARACTER_MAXIMUM_LENGTH": 50
+        },
+        {
+          "COLUMN_NAME": "created_at",
+          "DATA_TYPE": "datetime",
+          "IS_NULLABLE": "YES",
+          "COLUMN_KEY": "",
+          "COLUMN_DEFAULT": null,
+          "COLUMN_COMMENT": "",
+          "CHARACTER_MAXIMUM_LENGTH": null
+        },
+        {
+          "COLUMN_NAME": "parent_vertical",
+          "DATA_TYPE": "varchar",
+          "IS_NULLABLE": "YES",
+          "COLUMN_KEY": "",
+          "COLUMN_DEFAULT": null,
+          "COLUMN_COMMENT": "",
+          "CHARACTER_MAXIMUM_LENGTH": 50
+        }
+      ],
+      "foreign_keys": []
+    },
+    {
+      "name": "payments",
+      "comment": "",
+      "row_count": 33461,
+      "columns": [
+        {
+          "COLUMN_NAME": "id",
+          "DATA_TYPE": "varchar",
+          "IS_NULLABLE": "YES",
+          "COLUMN_KEY": "",
+          "COLUMN_DEFAULT": null,
+          "COLUMN_COMMENT": "",
+          "CHARACTER_MAXIMUM_LENGTH": 50
+        },
+        {
+          "COLUMN_NAME": "amount",
+          "DATA_TYPE": "double",
+          "IS_NULLABLE": "YES",
+          "COLUMN_KEY": "",
+          "COLUMN_DEFAULT": null,
+          "COLUMN_COMMENT": "",
+          "CHARACTER_MAXIMUM_LENGTH": null
+        },
+        {
+          "COLUMN_NAME": "currency",
+          "DATA_TYPE": "varchar",
+          "IS_NULLABLE": "YES",
+          "COLUMN_KEY": "",
+          "COLUMN_DEFAULT": null,
+          "COLUMN_COMMENT": "",
+          "CHARACTER_MAXIMUM_LENGTH": 50
+        },
+        {
+          "COLUMN_NAME": "created_at",
+          "DATA_TYPE": "datetime",
+          "IS_NULLABLE": "YES",
+          "COLUMN_KEY": "",
+          "COLUMN_DEFAULT": null,
+          "COLUMN_COMMENT": "",
+          "CHARACTER_MAXIMUM_LENGTH": null
+        },
+        {
+          "COLUMN_NAME": "source",
+          "DATA_TYPE": "varchar",
+          "IS_NULLABLE": "YES",
+          "COLUMN_KEY": "",
+          "COLUMN_DEFAULT": null,
+          "COLUMN_COMMENT": "",
+          "CHARACTER_MAXIMUM_LENGTH": 50
+        },
+        {
+          "COLUMN_NAME": "charge_date",
+          "DATA_TYPE": "datetime",
+          "IS_NULLABLE": "YES",
+          "COLUMN_KEY": "",
+          "COLUMN_DEFAULT": null,
+          "COLUMN_COMMENT": "",
+          "CHARACTER_MAXIMUM_LENGTH": null
+        },
+        {
+          "COLUMN_NAME": "mandate_id",
+          "DATA_TYPE": "varchar",
+          "IS_NULLABLE": "YES",
+          "COLUMN_KEY": "",
+          "COLUMN_DEFAULT": null,
+          "COLUMN_COMMENT": "",
+          "CHARACTER_MAXIMUM_LENGTH": 50
+        }
+      ],
+      "foreign_keys": []
+    }
+  ]
+}

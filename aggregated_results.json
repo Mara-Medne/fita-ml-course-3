@@ -1,0 +1,231 @@
+[
+  {
+    "question": "Jautājums 1: Kopējais maksājumu apjoms pa organizācijām",
+    "sql": "SELECT o.id AS organisation_id, o.parent_vertical, SUM(p.amount) AS total_payments\nFROM payments p\nJOIN mandates m ON p.mandate_id = m.id\nJOIN organisations o ON m.organisation_id = o.id\nGROUP BY o.id, o.parent_vertical\nORDER BY total_payments DESC",
+    "row_count": 208,
+    "data": [
+      {
+        "organisation_id": "cb4fb7740bf646859948bed49d594b08",
+        "parent_vertical": "healthcare",
+        "total_payments": 305346.57000000024
+      },
+      {
+        "organisation_id": "6c87af1fc07f4a94aeefce69a12508df",
+        "parent_vertical": "tradesmen_and_non_professionals_services",
+        "total_payments": 256616.5
+      },
+      {
+        "organisation_id": "f0ae22537c284b4ba08c5c09a0481df6",
+        "parent_vertical": "professional_and_financial_services",
+        "total_payments": 236687.0
+      },
+      {
+        "organisation_id": "e00a57ec92dc42f987e59cd351ad30a8",
+        "parent_vertical": "digital_services_media_telecoms",
+        "total_payments": 208954.1200000004
+      },
+      {
+        "organisation_id": "6b52bae9d36b4cf1a4dc443a277def4a",
+        "parent_vertical": "property",
+        "total_payments": 172870.52
+      },
+      {
+        "organisation_id": "9e575091cf414fe0a4bb2dc764651075",
+        "parent_vertical": "digital_services_media_telecoms",
+        "total_payments": 168601.8000000001
+      },
+      {
+        "organisation_id": "96674fe238bd424f941bf4cb49cd5e49",
+        "parent_vertical": "societies_and_clubs",
+        "total_payments": 168052.10000000038
+      },
+      {
+        "organisation_id": "05d17d8b464343858c2c10c4ecbafff4",
+        "parent_vertical": "professional_and_financial_services",
+        "total_payments": 143468.6400000001
+      },
+      {
+        "organisation_id": "0c6eb9b682a94474b4bf8aebb0b06db6",
+        "parent_vertical": "professional_and_financial_services",
+        "total_payments": 112164.49999999997
+      },
+      {
+        "organisation_id": "9e73d40c7b8349d8aff3f3484c0341ab",
+        "parent_vertical": "property",
+        "total_payments": 90673.42999999986
+      },
+      {
+        "organisation_id": "55c02a75280e4e0fb51ca111b8023217",
+        "parent_vertical": "sports_fitness",
+        "total_payments": 87920.49999999997
+      },
+      {
+        "organisation_id": "a5e9757a8ccc4e8a888f32369c2820fa",
+        "parent_vertical": "digital_services_media_telecoms",
+        "total_payments": 77642.91999999998
+      },
+      {
+        "organisation_id": "5a9ea7bcf3d148ad920956a538a7c71e",
+        "parent_vertical": "digital_services_media_telecoms",
+        "total_payments": 73633.37999999995
+      },
+      {
+        "organisation_id": "27e25b66b06a4e4196ed5e4deb7b9ae4",
+        "parent_vertical": "property",
+        "total_payments": 72609.27
+      },
+      {
+        "organisation_id": "2c99b65a9c9f489b945811bc35547ee7",
+        "parent_vertical": "sports_fitness",
+        "total_payments": 69379.0
+      },
+      {
+        "organisation_id": "9afae93457004e38a3c9567fc1e10d24",
+        "parent_vertical": "digital_services_media_telecoms",
+        "total_payments": 69098.60000000002
+      },
+      {
+        "organisation_id": "7e138d00025740d38685b91dcc19bce4",
+        "parent_vertical": "digital_services_media_telecoms",
+        "total_payments": 59080.7
+      },
+      {
+        "organisation_id": "a59e861b7d48478891365eb8fc503310",
+        "parent_vertical": "sports_fitness",
+        "total_payments": 53336.25000000033
+      },
+      {
+        "organisation_id": "de392eb3a8304b5a8fbaaa4950bc6a67",
+        "parent_vertical": "property",
+        "total_payments": 52701.0
+      },
+      {
+        "organisation_id": "88af12eea7ea44a086248974874c256f",
+        "parent_vertical": "sports_fitness",
+        "total_payments": 50947.0
+      }
+    ]
+  },
+  {
+    "question": "Jautājums 2: Cik mandātu katrai organizācijai",
+    "sql": "SELECT o.id AS organisation_id, o.parent_vertical, COUNT(m.id) AS mandate_count\nFROM mandates m\nJOIN organisations o ON m.organisation_id = o.id\nGROUP BY o.id, o.parent_vertical\nORDER BY mandate_count DESC",
+    "row_count": 226,
+    "data": [
+      {
+        "organisation_id": "6c87af1fc07f4a94aeefce69a12508df",
+        "parent_vertical": "tradesmen_and_non_professionals_services",
+        "mandate_count": 1972
+      },
+      {
+        "organisation_id": "55c02a75280e4e0fb51ca111b8023217",
+        "parent_vertical": "sports_fitness",
+        "mandate_count": 765
+      },
+      {
+        "organisation_id": "2c99b65a9c9f489b945811bc35547ee7",
+        "parent_vertical": "sports_fitness",
+        "mandate_count": 485
+      },
+      {
+        "organisation_id": "f0ae22537c284b4ba08c5c09a0481df6",
+        "parent_vertical": "professional_and_financial_services",
+        "mandate_count": 349
+      },
+      {
+        "organisation_id": "e73707ddb870443ab62e9ba2758a5c24",
+        "parent_vertical": "digital_services_media_telecoms",
+        "mandate_count": 314
+      },
+      {
+        "organisation_id": "6469fd8d5a5e4f28b675e5aedb40c825",
+        "parent_vertical": "sports_fitness",
+        "mandate_count": 244
+      },
+      {
+        "organisation_id": "335c3f29bb7a40d988cab88b4bacdcb8",
+        "parent_vertical": "sports_fitness",
+        "mandate_count": 243
+      },
+      {
+        "organisation_id": "42a5660d9b3e4c5aae6b8ce1cc6cfbfe",
+        "parent_vertical": "sports_fitness",
+        "mandate_count": 230
+      },
+      {
+        "organisation_id": "a59e861b7d48478891365eb8fc503310",
+        "parent_vertical": "sports_fitness",
+        "mandate_count": 230
+      },
+      {
+        "organisation_id": "f08c9c4af51448cdbd1296fd90764ec3",
+        "parent_vertical": "sports_fitness",
+        "mandate_count": 216
+      },
+      {
+        "organisation_id": "e4b4c69203d54b4693f5d7f0f5279ba9",
+        "parent_vertical": "sports_fitness",
+        "mandate_count": 206
+      },
+      {
+        "organisation_id": "e00a57ec92dc42f987e59cd351ad30a8",
+        "parent_vertical": "digital_services_media_telecoms",
+        "mandate_count": 189
+      },
+      {
+        "organisation_id": "37344f174edd44bea32c7c59c90dd135",
+        "parent_vertical": "sports_fitness",
+        "mandate_count": 161
+      },
+      {
+        "organisation_id": "36bddd58e6ff454ca22304dfc5b202fa",
+        "parent_vertical": "sports_fitness",
+        "mandate_count": 126
+      },
+      {
+        "organisation_id": "05d17d8b464343858c2c10c4ecbafff4",
+        "parent_vertical": "professional_and_financial_services",
+        "mandate_count": 117
+      },
+      {
+        "organisation_id": "4b5f9e4816f44425b42c6a38d632c105",
+        "parent_vertical": "property",
+        "mandate_count": 115
+      },
+      {
+        "organisation_id": "cb4fb7740bf646859948bed49d594b08",
+        "parent_vertical": "healthcare",
+        "mandate_count": 104
+      },
+      {
+        "organisation_id": "8c52fe34d5984b9381fb9d83a7761f6e",
+        "parent_vertical": "property",
+        "mandate_count": 95
+      },
+      {
+        "organisation_id": "03f8d559c69c450c8fb0b6636c5f9e70",
+        "parent_vertical": "sports_fitness",
+        "mandate_count": 92
+      },
+      {
+        "organisation_id": "8436ca2de8c64bdca55c41dbf0bd343a",
+        "parent_vertical": "sports_fitness",
+        "mandate_count": 85
+      }
+    ]
+  },
+  {
+    "question": "Jautājums 3: Vidējais maksājuma apjoms pa gadiem",
+    "sql": "SELECT YEAR(p.created_at) AS payment_year, AVG(p.amount) AS avg_payment\nFROM payments p\nGROUP BY YEAR(p.created_at)\nORDER BY payment_year",
+    "row_count": 2,
+    "data": [
+      {
+        "payment_year": 2018,
+        "avg_payment": 126.15656562554773
+      },
+      {
+        "payment_year": 2019,
+        "avg_payment": 131.61663853727111
+      }
+    ]
+  }
+]

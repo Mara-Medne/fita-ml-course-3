@@ -1,0 +1,108 @@
+{
+  "mandates": [
+    {
+      "id": "0001355c482142b3a2056063ae960df6",
+      "created_at": "2018-11-09 12:21:05",
+      "scheme": "bacs",
+      "organisation_id": "6c87af1fc07f4a94aeefce69a12508df"
+    },
+    {
+      "id": "0018cf3b838748d2a6fc0c3346b0faad",
+      "created_at": "2018-07-09 13:15:00",
+      "scheme": "bacs",
+      "organisation_id": "335c3f29bb7a40d988cab88b4bacdcb8"
+    },
+    {
+      "id": "0019186e35bd43d5ba1eeebda0367417",
+      "created_at": "2018-05-11 10:29:03",
+      "scheme": "bacs",
+      "organisation_id": "e73707ddb870443ab62e9ba2758a5c24"
+    },
+    {
+      "id": "001bdd9accb54e8f9b4ca907b96067b0",
+      "created_at": "2018-12-13 10:11:34",
+      "scheme": "bacs",
+      "organisation_id": "55c02a75280e4e0fb51ca111b8023217"
+    },
+    {
+      "id": "002dba7356b64f7d835a866eabc22ed3",
+      "created_at": "2018-04-26 15:25:24",
+      "scheme": "bacs",
+      "organisation_id": "a5e9757a8ccc4e8a888f32369c2820fa"
+    }
+  ],
+  "organisations": [
+    {
+      "id": "002b8a12623d408b9a5acbcd041175ac",
+      "created_at": "2018-05-09 15:25:32",
+      "parent_vertical": "sports_fitness"
+    },
+    {
+      "id": "0192ad0e4e2741078ffb93742ca4324c",
+      "created_at": "2018-05-02 16:00:14",
+      "parent_vertical": "sports_fitness"
+    },
+    {
+      "id": "01f46cfde0894d80a51524d824331d44",
+      "created_at": "2018-04-03 15:04:51",
+      "parent_vertical": "digital_services_media_telecoms"
+    },
+    {
+      "id": "0330e226db6948cdb3eba950e06f8a55",
+      "created_at": "2018-05-29 11:38:15",
+      "parent_vertical": "professional_and_financial_services"
+    },
+    {
+      "id": "03bb86efa058482d95121ef332581fae",
+      "created_at": "2018-04-23 12:42:17",
+      "parent_vertical": "property"
+    }
+  ],
+  "payments": [
+    {
+      "id": "0005ce67ecb043d1bce50eaf5017a906",
+      "amount": 52.92,
+      "currency": "GBP",
+      "created_at": "2019-02-22 05:51:57",
+      "source": "dashboard",
+      "charge_date": "2019-02-27 00:00:00",
+      "mandate_id": "b2c2969e1f2d46efa39ca2d7b1c8fa23"
+    },
+    {
+      "id": "000673edc87e438d92487ec8647f5a3a",
+      "amount": 62.0,
+      "currency": "GBP",
+      "created_at": "2019-02-27 05:45:08",
+      "source": "dashboard",
+      "charge_date": "2019-03-04 00:00:00",
+      "mandate_id": "9bd2ae637a834838a3c866f283d3c97b"
+    },
+    {
+      "id": "000982866403488cbe7975a7196e6c27",
+      "amount": 44.0,
+      "currency": "GBP",
+      "created_at": "2019-02-20 05:33:18",
+      "source": "dashboard",
+      "charge_date": "2019-02-25 00:00:00",
+      "mandate_id": "7fdc7bffa8d24408befbd6148a53a033"
+    },
+    {
+      "id": "000a76df3ed846a79d83713dff502443",
+      "amount": 50.0,
+      "currency": "GBP",
+      "created_at": "2018-09-27 04:32:25",
+      "source": "dashboard",
+      "charge_date": "2018-10-02 00:00:00",
+      "mandate_id": "4e7d08bb9aea403383fc377d211d4bc6"
+    },
+    {
+      "id": "000abaff096d4937b16ed9d3da8b21c3",
+      "amount": 50.0,
+      "currency": "GBP",
+      "created_at": "2019-01-30 05:34:14",
+      "source": "dashboard",
+      "charge_date": "2019-02-04 00:00:00",
+      "mandate_id": "224da65efcfc4082bef68faf17f2aa6b"
+    }
+  ]
+}

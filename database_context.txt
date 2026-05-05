@@ -1,0 +1,31 @@
+# Datubāze: direct_payments
+
+
+## Tabula: mandates
+Rindu skaits: 9381
+
+Kolonnas:
+  - id: varchar NULL
+  - created_at: datetime NULL
+  - scheme: varchar NULL
+  - organisation_id: varchar NULL
+
+## Tabula: organisations
+Rindu skaits: 431
+
+Kolonnas:
+  - id: varchar NULL
+  - created_at: datetime NULL
+  - parent_vertical: varchar NULL
+
+## Tabula: payments
+Rindu skaits: 33461
+
+Kolonnas:
+  - id: varchar NULL
+  - amount: double NULL
+  - currency: varchar NULL
+  - created_at: datetime NULL
+  - source: varchar NULL
+  - charge_date: datetime NULL
+  - mandate_id: varchar NULL

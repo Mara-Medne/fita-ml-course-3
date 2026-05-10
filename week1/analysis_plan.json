@@ -1,0 +1,44 @@
+{
+  "plan": [
+    {
+      "id": 1,
+      "title": "Kopējā summa katrā vertikalē",
+      "description": "Parādīt kopējo maksājumu summu (amount) grupētas pēc organisations.parent_vertical.",
+      "viz_type": "bar",
+      "sql_hint": "SELECT o.parent_vertical, SUM(p.amount) AS total FROM payments p JOIN mandates m ON p.mandate_id = m.id JOIN organisations o ON m.organisation_id = o.id GROUP BY o.parent_vertical",
+      "separator": "---"
+    },
+    {
+      "id": 2,
+      "title": "Maksājumu skaits mēnesīs",
+      "description": "Parādīt maksājumu skaitu katram mēnei, grupējot pēc charge_date (gada un mēneša).",
+      "viz_type": "line",
+      "sql_hint": "SELECT DATE_FORMAT(p.charge_date, '%Y-%m') AS month, COUNT(*) AS payment_count FROM payments p GROUP BY month ORDER BY month",
+      "separator": "---"
+    },
+    {
+      "id": 3,
+      "title": "Maksājumu sadalījums pēc schemata",
+      "description": "Parādīt procentuālu daļu maksājumu, kategorizēt pēc mandates.scheme.",
+      "viz_type": "pie",
+      "sql_hint": "SELECT m.scheme, COUNT(*) AS cnt FROM payments p JOIN mandates m ON p.mandate_id = m.id GROUP BY m.scheme",
+      "separator": "---"
+    },
+    {
+      "id": 4,
+      "title": "Top 10 organizācijas pēc kopējas summas",
+      "description": "Parādīt organizācijus ar vislielo kopējo maksājumu summu, horisontālā stuķa diagrammā.",
+      "viz_type": "horizontal_bar",
+      "sql_hint": "SELECT o.id AS org_id, SUM(p.amount) AS total FROM payments p JOIN mandates m ON p.mandate_id = m.id JOIN organisations o ON m.organisation_id = o.id GROUP BY o.id ORDER BY total DESC LIMIT 10",
+      "separator": "---"
+    },
+    {
+      "id": 5,
+      "title": "Saikne starp maksājuma summu un laika starpību",
+      "description": "Parādīt punktu diagrammu, kur x ass ir dienu skaits starp created_at un charge_date, y ass ir maksājuma summa.",
+      "viz_type": "scatter",
+      "sql_hint": "SELECT p.amount, DATEDIFF(p.charge_date, p.created_at) AS days_diff FROM payments p",
+      "separator": "---"
+    }
+  ]
+}

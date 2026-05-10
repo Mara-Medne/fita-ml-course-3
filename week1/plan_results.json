@@ -1,0 +1,162 @@
+[
+  {
+    "id": 1,
+    "title": "Kopējā summa katrā vertikalē",
+    "viz_type": "bar",
+    "sql": "SELECT o.parent_vertical, SUM(p.amount) AS total FROM payments p JOIN mandates m ON p.mandate_id = m.id JOIN organisations o ON m.organisation_id = o.id GROUP BY o.parent_vertical",
+    "row_count": 7,
+    "chart": "charts/chart_1.png",
+    "insight": "Grafika rāda, ka „digital_services_media_telecoms” ir ar vislielāko kopējo summu (≈ 1 186 462), tas ir aptuveni 1,5 reizes vairāk nekā nākamais līmeņa vertikālais segs – „sports_fitness” (≈ 734 094). Mazākā summa pastāv „tradesmen_and_non_professionals_services” vertikalē (≈ 381 776), kas ir tikai vienojamie daļas no vislielākās vertikāles, saglabājot lielo atstarpi starp sektoriem. Tas norāda, ka medijos, telekomunikācijās un digitālajos pakalpojumos investīcijas vai pārdoto preču apjoms ir signifikāti augstāks, pamatojoties uz kas var uzsver papildu resursus vai marketinga kampaņas šajā sektorā, lai uzlabotu šķēlīgu efektiivitāti. Pretējā gadījumā, „tradesmen_and_non_professionals_services” sektors var būt kandidāts optimizēšanai vai izdevumu uzlabošanai, lai sazinātu atšķirību ar konkurētājiem.",
+    "data": [
+      {
+        "parent_vertical": "property",
+        "total": 634362.5299999994
+      },
+      {
+        "parent_vertical": "tradesmen_and_non_professionals_services",
+        "total": 381776.310000001
+      },
+      {
+        "parent_vertical": "sports_fitness",
+        "total": 734094.1700000033
+      },
+      {
+        "parent_vertical": "digital_services_media_telecoms",
+        "total": 1186462.0999999896
+      },
+      {
+        "parent_vertical": "professional_and_financial_services",
+        "total": 803472.16
+      },
+      {
+        "parent_vertical": "societies_and_clubs",
+        "total": 171355.10000000038
+      },
+      {
+        "parent_vertical": "healthcare",
+        "total": 368034.1500000004
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Maksājumu skaits mēnesīs",
+    "viz_type": "line",
+    "sql": "SELECT DATE_FORMAT(p.charge_date, '%Y-%m') AS month, COUNT(*) AS payment_count FROM payments p GROUP BY month ORDER BY month",
+    "row_count": 24,
+    "chart": "charts/chart_2.png",
+    "insight": "Mēnešu laikā aprīl – augusts 2018 gadu maksājumu skaits aug extremāli – no 54 maksājuma aprīliem līdz 2 670 maksājumam augustā, kas nozīmē vispārējo augstumu par vairāk nekā 48 reizes. Lielākais mēneša augmentācija notiek maijā – aprīlī – maijā skaits palielinās par vairāk nekā 645 % (no 54 līdz 403), un turpmākie mēneši parāda stabilu, vienmēr augsto augmentācijas tempus (maijā – jūnī ≈ 215 %, jūnī – jūlijā ≈ 71 %, jūlijā – augustā ≈ 23 %). Šāds trends ir indikators, ka produkta vai pakalpojuma piegādāšanās ir veiksmīgi pielāgots tirgus vajadzībām un, iespējams, tiek izmantoti efektīvi marketinga kampas vai sezonālās promocijas. Lai turpinātu šo pozitīvu dinamiku, vērts analizēt, kādi konkreti faktori (piemēram, reklāmas investīcijas, jaunie klienti vai paplašinātais produktportfolio) oficiēji kopā ar maksājumu skatu ir radušies šādu augstāugo tendenci.",
+    "data": [
+      {
+        "month": "2018-04",
+        "payment_count": 54.0
+      },
+      {
+        "month": "2018-05",
+        "payment_count": 403.0
+      },
+      {
+        "month": "2018-06",
+        "payment_count": 1271.0
+      },
+      {
+        "month": "2018-07",
+        "payment_count": 2175.0
+      },
+      {
+        "month": "2018-08",
+        "payment_count": 2670.0
+      },
+      {
+        "month": "2018-09",
+        "payment_count": 2093.0
+      },
+      {
+        "month": "2018-10",
+        "payment_count": 4699.0
+      },
+      {
+        "month": "2018-11",
+        "payment_count": 4217.0
+      },
+      {
+        "month": "2018-12",
+        "payment_count": 3283.0
+      },
+      {
+        "month": "2019-01",
+        "payment_count": 6182.0
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Maksājumu sadalījums pēc schemata",
+    "viz_type": "pie",
+    "sql": "SELECT m.scheme, COUNT(*) AS cnt FROM payments p JOIN mandates m ON p.mandate_id = m.id GROUP BY m.scheme",
+    "row_count": 2,
+    "chart": "charts/chart_3.png",
+    "insight": null,
+    "data": [
+      {
+        "scheme": "bacs",
+        "cnt": 31793.0
+      },
+      {
+        "scheme": "sepa_core",
+        "cnt": 1668.0
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Top 10 organizācijas pēc kopējas summas",
+    "viz_type": "horizontal_bar",
+    "sql": "SELECT o.id AS org_id, SUM(p.amount) AS total FROM payments p JOIN mandates m ON p.mandate_id = m.id JOIN organisations o ON m.organisation_id = o.id GROUP BY o.id ORDER BY total DESC LIMIT 10",
+    "row_count": 10,
+    "chart": "charts/chart_4.png",
+    "insight": "Grafika parāda, ka lielākā organizācija (cb4fb7740bf646859948bed49d594b08) aizpildīja 305 346,57 EUR, kas ir aptuveni 19 % vairāk par otrā vietas organizāciju (6c87af1fc07f4a94aeefce69a12508df). Pirmās trīs organizācijas kopā veido parasti pāri 800 000 EUR, kas apzīmē, ka lielā daļa kopējā summas tiek koncentrēta tikai vairākās organizācijās. Šādā attiecībā vērtēji būtu racionalī ievest resursus un uzmanību uz šiem līderiem, lai uzlabotu kopējo efektivitāti un samazinātu riziku, kas saistīts ar pārsniegšanu vai nepārtraucamību mazākās organizācijas rezultātos.",
+    "data": [
+      {
+        "org_id": "cb4fb7740bf646859948bed49d594b08",
+        "total": 305346.5700000003
+      },
+      {
+        "org_id": "6c87af1fc07f4a94aeefce69a12508df",
+        "total": 256616.5
+      },
+      {
+        "org_id": "f0ae22537c284b4ba08c5c09a0481df6",
+        "total": 236687.0
+      },
+      {
+        "org_id": "e00a57ec92dc42f987e59cd351ad30a8",
+        "total": 208954.12000000046
+      },
+      {
+        "org_id": "6b52bae9d36b4cf1a4dc443a277def4a",
+        "total": 172870.52
+      },
+      {
+        "org_id": "9e575091cf414fe0a4bb2dc764651075",
+        "total": 168601.8
+      },
+      {
+        "org_id": "96674fe238bd424f941bf4cb49cd5e49",
+        "total": 168052.10000000038
+      },
+      {
+        "org_id": "05d17d8b464343858c2c10c4ecbafff4",
+        "total": 143468.6400000001
+      },
+      {
+        "org_id": "0c6eb9b682a94474b4bf8aebb0b06db6",
+        "total": 112164.49999999997
+      },
+      {
+        "org_id": "9e73d40c7b8349d8aff3f3484c0341ab",
+        "total": 90673.42999999986
+      }
+    ]
+  }
+]

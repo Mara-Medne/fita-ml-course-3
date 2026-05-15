@@ -1,0 +1,14 @@
+services:
+  week1:
+    build: .
+    env_file:
+      - .env
+    volumes:
+      - ./week1:/app/week1
+    working_dir: /app/week1
+    command: python ${SCRIPT:-01_extract_schema.py}
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "5"

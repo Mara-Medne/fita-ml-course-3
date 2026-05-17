@@ -1,0 +1,782 @@
+[
+  {
+    "vertical": "digital_services_media_telecoms",
+    "month": "2018-04",
+    "scheme": "bacs",
+    "payment_count": 8
+  },
+  {
+    "vertical": "digital_services_media_telecoms",
+    "month": "2018-04",
+    "scheme": "sepa_core",
+    "payment_count": 1
+  },
+  {
+    "vertical": "healthcare",
+    "month": "2018-04",
+    "scheme": "bacs",
+    "payment_count": 3
+  },
+  {
+    "vertical": "property",
+    "month": "2018-04",
+    "scheme": "bacs",
+    "payment_count": 3
+  },
+  {
+    "vertical": "sports_fitness",
+    "month": "2018-04",
+    "scheme": "bacs",
+    "payment_count": 36
+  },
+  {
+    "vertical": "tradesmen_and_non_professionals_services",
+    "month": "2018-04",
+    "scheme": "bacs",
+    "payment_count": 3
+  },
+  {
+    "vertical": "digital_services_media_telecoms",
+    "month": "2018-05",
+    "scheme": "bacs",
+    "payment_count": 76
+  },
+  {
+    "vertical": "digital_services_media_telecoms",
+    "month": "2018-05",
+    "scheme": "sepa_core",
+    "payment_count": 8
+  },
+  {
+    "vertical": "healthcare",
+    "month": "2018-05",
+    "scheme": "bacs",
+    "payment_count": 12
+  },
+  {
+    "vertical": "professional_and_financial_services",
+    "month": "2018-05",
+    "scheme": "bacs",
+    "payment_count": 28
+  },
+  {
+    "vertical": "property",
+    "month": "2018-05",
+    "scheme": "bacs",
+    "payment_count": 36
+  },
+  {
+    "vertical": "property",
+    "month": "2018-05",
+    "scheme": "sepa_core",
+    "payment_count": 1
+  },
+  {
+    "vertical": "societies_and_clubs",
+    "month": "2018-05",
+    "scheme": "bacs",
+    "payment_count": 11
+  },
+  {
+    "vertical": "sports_fitness",
+    "month": "2018-05",
+    "scheme": "bacs",
+    "payment_count": 150
+  },
+  {
+    "vertical": "tradesmen_and_non_professionals_services",
+    "month": "2018-05",
+    "scheme": "bacs",
+    "payment_count": 81
+  },
+  {
+    "vertical": "digital_services_media_telecoms",
+    "month": "2018-06",
+    "scheme": "bacs",
+    "payment_count": 108
+  },
+  {
+    "vertical": "digital_services_media_telecoms",
+    "month": "2018-06",
+    "scheme": "sepa_core",
+    "payment_count": 15
+  },
+  {
+    "vertical": "healthcare",
+    "month": "2018-06",
+    "scheme": "bacs",
+    "payment_count": 42
+  },
+  {
+    "vertical": "professional_and_financial_services",
+    "month": "2018-06",
+    "scheme": "bacs",
+    "payment_count": 288
+  },
+  {
+    "vertical": "property",
+    "month": "2018-06",
+    "scheme": "bacs",
+    "payment_count": 138
+  },
+  {
+    "vertical": "societies_and_clubs",
+    "month": "2018-06",
+    "scheme": "bacs",
+    "payment_count": 18
+  },
+  {
+    "vertical": "sports_fitness",
+    "month": "2018-06",
+    "scheme": "bacs",
+    "payment_count": 321
+  },
+  {
+    "vertical": "sports_fitness",
+    "month": "2018-06",
+    "scheme": "sepa_core",
+    "payment_count": 12
+  },
+  {
+    "vertical": "tradesmen_and_non_professionals_services",
+    "month": "2018-06",
+    "scheme": "bacs",
+    "payment_count": 329
+  },
+  {
+    "vertical": "digital_services_media_telecoms",
+    "month": "2018-07",
+    "scheme": "bacs",
+    "payment_count": 193
+  },
+  {
+    "vertical": "digital_services_media_telecoms",
+    "month": "2018-07",
+    "scheme": "sepa_core",
+    "payment_count": 42
+  },
+  {
+    "vertical": "healthcare",
+    "month": "2018-07",
+    "scheme": "bacs",
+    "payment_count": 89
+  },
+  {
+    "vertical": "professional_and_financial_services",
+    "month": "2018-07",
+    "scheme": "bacs",
+    "payment_count": 432
+  },
+  {
+    "vertical": "property",
+    "month": "2018-07",
+    "scheme": "bacs",
+    "payment_count": 194
+  },
+  {
+    "vertical": "property",
+    "month": "2018-07",
+    "scheme": "sepa_core",
+    "payment_count": 4
+  },
+  {
+    "vertical": "societies_and_clubs",
+    "month": "2018-07",
+    "scheme": "bacs",
+    "payment_count": 21
+  },
+  {
+    "vertical": "sports_fitness",
+    "month": "2018-07",
+    "scheme": "bacs",
+    "payment_count": 612
+  },
+  {
+    "vertical": "sports_fitness",
+    "month": "2018-07",
+    "scheme": "sepa_core",
+    "payment_count": 20
+  },
+  {
+    "vertical": "tradesmen_and_non_professionals_services",
+    "month": "2018-07",
+    "scheme": "bacs",
+    "payment_count": 568
+  },
+  {
+    "vertical": "digital_services_media_telecoms",
+    "month": "2018-08",
+    "scheme": "bacs",
+    "payment_count": 244
+  },
+  {
+    "vertical": "digital_services_media_telecoms",
+    "month": "2018-08",
+    "scheme": "sepa_core",
+    "payment_count": 68
+  },
+  {
+    "vertical": "healthcare",
+    "month": "2018-08",
+    "scheme": "bacs",
+    "payment_count": 96
+  },
+  {
+    "vertical": "professional_and_financial_services",
+    "month": "2018-08",
+    "scheme": "bacs",
+    "payment_count": 527
+  },
+  {
+    "vertical": "property",
+    "month": "2018-08",
+    "scheme": "bacs",
+    "payment_count": 245
+  },
+  {
+    "vertical": "property",
+    "month": "2018-08",
+    "scheme": "sepa_core",
+    "payment_count": 9
+  },
+  {
+    "vertical": "societies_and_clubs",
+    "month": "2018-08",
+    "scheme": "bacs",
+    "payment_count": 22
+  },
+  {
+    "vertical": "sports_fitness",
+    "month": "2018-08",
+    "scheme": "bacs",
+    "payment_count": 793
+  },
+  {
+    "vertical": "sports_fitness",
+    "month": "2018-08",
+    "scheme": "sepa_core",
+    "payment_count": 35
+  },
+  {
+    "vertical": "tradesmen_and_non_professionals_services",
+    "month": "2018-08",
+    "scheme": "bacs",
+    "payment_count": 631
+  },
+  {
+    "vertical": "digital_services_media_telecoms",
+    "month": "2018-09",
+    "scheme": "bacs",
+    "payment_count": 205
+  },
+  {
+    "vertical": "digital_services_media_telecoms",
+    "month": "2018-09",
+    "scheme": "sepa_core",
+    "payment_count": 79
+  },
+  {
+    "vertical": "healthcare",
+    "month": "2018-09",
+    "scheme": "bacs",
+    "payment_count": 87
+  },
+  {
+    "vertical": "professional_and_financial_services",
+    "month": "2018-09",
+    "scheme": "bacs",
+    "payment_count": 172
+  },
+  {
+    "vertical": "property",
+    "month": "2018-09",
+    "scheme": "bacs",
+    "payment_count": 181
+  },
+  {
+    "vertical": "property",
+    "month": "2018-09",
+    "scheme": "sepa_core",
+    "payment_count": 6
+  },
+  {
+    "vertical": "societies_and_clubs",
+    "month": "2018-09",
+    "scheme": "bacs",
+    "payment_count": 22
+  },
+  {
+    "vertical": "sports_fitness",
+    "month": "2018-09",
+    "scheme": "bacs",
+    "payment_count": 736
+  },
+  {
+    "vertical": "sports_fitness",
+    "month": "2018-09",
+    "scheme": "sepa_core",
+    "payment_count": 19
+  },
+  {
+    "vertical": "tradesmen_and_non_professionals_services",
+    "month": "2018-09",
+    "scheme": "bacs",
+    "payment_count": 586
+  },
+  {
+    "vertical": "digital_services_media_telecoms",
+    "month": "2018-10",
+    "scheme": "bacs",
+    "payment_count": 401
+  },
+  {
+    "vertical": "digital_services_media_telecoms",
+    "month": "2018-10",
+    "scheme": "sepa_core",
+    "payment_count": 152
+  },
+  {
+    "vertical": "healthcare",
+    "month": "2018-10",
+    "scheme": "bacs",
+    "payment_count": 97
+  },
+  {
+    "vertical": "professional_and_financial_services",
+    "month": "2018-10",
+    "scheme": "bacs",
+    "payment_count": 966
+  },
+  {
+    "vertical": "professional_and_financial_services",
+    "month": "2018-10",
+    "scheme": "sepa_core",
+    "payment_count": 1
+  },
+  {
+    "vertical": "property",
+    "month": "2018-10",
+    "scheme": "bacs",
+    "payment_count": 373
+  },
+  {
+    "vertical": "property",
+    "month": "2018-10",
+    "scheme": "sepa_core",
+    "payment_count": 1
+  },
+  {
+    "vertical": "societies_and_clubs",
+    "month": "2018-10",
+    "scheme": "bacs",
+    "payment_count": 22
+  },
+  {
+    "vertical": "sports_fitness",
+    "month": "2018-10",
+    "scheme": "bacs",
+    "payment_count": 1589
+  },
+  {
+    "vertical": "sports_fitness",
+    "month": "2018-10",
+    "scheme": "sepa_core",
+    "payment_count": 102
+  },
+  {
+    "vertical": "tradesmen_and_non_professionals_services",
+    "month": "2018-10",
+    "scheme": "bacs",
+    "payment_count": 995
+  },
+  {
+    "vertical": "digital_services_media_telecoms",
+    "month": "2018-11",
+    "scheme": "bacs",
+    "payment_count": 351
+  },
+  {
+    "vertical": "digital_services_media_telecoms",
+    "month": "2018-11",
+    "scheme": "sepa_core",
+    "payment_count": 139
+  },
+  {
+    "vertical": "healthcare",
+    "month": "2018-11",
+    "scheme": "bacs",
+    "payment_count": 116
+  },
+  {
+    "vertical": "professional_and_financial_services",
+    "month": "2018-11",
+    "scheme": "bacs",
+    "payment_count": 638
+  },
+  {
+    "vertical": "professional_and_financial_services",
+    "month": "2018-11",
+    "scheme": "sepa_core",
+    "payment_count": 1
+  },
+  {
+    "vertical": "property",
+    "month": "2018-11",
+    "scheme": "bacs",
+    "payment_count": 310
+  },
+  {
+    "vertical": "property",
+    "month": "2018-11",
+    "scheme": "sepa_core",
+    "payment_count": 1
+  },
+  {
+    "vertical": "societies_and_clubs",
+    "month": "2018-11",
+    "scheme": "bacs",
+    "payment_count": 24
+  },
+  {
+    "vertical": "sports_fitness",
+    "month": "2018-11",
+    "scheme": "bacs",
+    "payment_count": 1325
+  },
+  {
+    "vertical": "sports_fitness",
+    "month": "2018-11",
+    "scheme": "sepa_core",
+    "payment_count": 62
+  },
+  {
+    "vertical": "tradesmen_and_non_professionals_services",
+    "month": "2018-11",
+    "scheme": "bacs",
+    "payment_count": 1250
+  },
+  {
+    "vertical": "digital_services_media_telecoms",
+    "month": "2018-12",
+    "scheme": "bacs",
+    "payment_count": 263
+  },
+  {
+    "vertical": "digital_services_media_telecoms",
+    "month": "2018-12",
+    "scheme": "sepa_core",
+    "payment_count": 150
+  },
+  {
+    "vertical": "healthcare",
+    "month": "2018-12",
+    "scheme": "bacs",
+    "payment_count": 107
+  },
+  {
+    "vertical": "professional_and_financial_services",
+    "month": "2018-12",
+    "scheme": "bacs",
+    "payment_count": 226
+  },
+  {
+    "vertical": "professional_and_financial_services",
+    "month": "2018-12",
+    "scheme": "sepa_core",
+    "payment_count": 1
+  },
+  {
+    "vertical": "property",
+    "month": "2018-12",
+    "scheme": "bacs",
+    "payment_count": 223
+  },
+  {
+    "vertical": "property",
+    "month": "2018-12",
+    "scheme": "sepa_core",
+    "payment_count": 1
+  },
+  {
+    "vertical": "societies_and_clubs",
+    "month": "2018-12",
+    "scheme": "bacs",
+    "payment_count": 24
+  },
+  {
+    "vertical": "sports_fitness",
+    "month": "2018-12",
+    "scheme": "bacs",
+    "payment_count": 1190
+  },
+  {
+    "vertical": "sports_fitness",
+    "month": "2018-12",
+    "scheme": "sepa_core",
+    "payment_count": 78
+  },
+  {
+    "vertical": "tradesmen_and_non_professionals_services",
+    "month": "2018-12",
+    "scheme": "bacs",
+    "payment_count": 1020
+  },
+  {
+    "vertical": "digital_services_media_telecoms",
+    "month": "2019-01",
+    "scheme": "bacs",
+    "payment_count": 476
+  },
+  {
+    "vertical": "digital_services_media_telecoms",
+    "month": "2019-01",
+    "scheme": "sepa_core",
+    "payment_count": 156
+  },
+  {
+    "vertical": "healthcare",
+    "month": "2019-01",
+    "scheme": "bacs",
+    "payment_count": 288
+  },
+  {
+    "vertical": "professional_and_financial_services",
+    "month": "2019-01",
+    "scheme": "bacs",
+    "payment_count": 1052
+  },
+  {
+    "vertical": "property",
+    "month": "2019-01",
+    "scheme": "bacs",
+    "payment_count": 441
+  },
+  {
+    "vertical": "societies_and_clubs",
+    "month": "2019-01",
+    "scheme": "bacs",
+    "payment_count": 28
+  },
+  {
+    "vertical": "sports_fitness",
+    "month": "2019-01",
+    "scheme": "bacs",
+    "payment_count": 2438
+  },
+  {
+    "vertical": "sports_fitness",
+    "month": "2019-01",
+    "scheme": "sepa_core",
+    "payment_count": 85
+  },
+  {
+    "vertical": "tradesmen_and_non_professionals_services",
+    "month": "2019-01",
+    "scheme": "bacs",
+    "payment_count": 1218
+  },
+  {
+    "vertical": "digital_services_media_telecoms",
+    "month": "2019-02",
+    "scheme": "bacs",
+    "payment_count": 400
+  },
+  {
+    "vertical": "digital_services_media_telecoms",
+    "month": "2019-02",
+    "scheme": "sepa_core",
+    "payment_count": 163
+  },
+  {
+    "vertical": "healthcare",
+    "month": "2019-02",
+    "scheme": "bacs",
+    "payment_count": 293
+  },
+  {
+    "vertical": "professional_and_financial_services",
+    "month": "2019-02",
+    "scheme": "bacs",
+    "payment_count": 714
+  },
+  {
+    "vertical": "property",
+    "month": "2019-02",
+    "scheme": "bacs",
+    "payment_count": 343
+  },
+  {
+    "vertical": "societies_and_clubs",
+    "month": "2019-02",
+    "scheme": "bacs",
+    "payment_count": 30
+  },
+  {
+    "vertical": "sports_fitness",
+    "month": "2019-02",
+    "scheme": "bacs",
+    "payment_count": 1877
+  },
+  {
+    "vertical": "sports_fitness",
+    "month": "2019-02",
+    "scheme": "sepa_core",
+    "payment_count": 96
+  },
+  {
+    "vertical": "tradesmen_and_non_professionals_services",
+    "month": "2019-02",
+    "scheme": "bacs",
+    "payment_count": 1194
+  },
+  {
+    "vertical": "digital_services_media_telecoms",
+    "month": "2019-03",
+    "scheme": "bacs",
+    "payment_count": 144
+  },
+  {
+    "vertical": "digital_services_media_telecoms",
+    "month": "2019-03",
+    "scheme": "sepa_core",
+    "payment_count": 117
+  },
+  {
+    "vertical": "healthcare",
+    "month": "2019-03",
+    "scheme": "bacs",
+    "payment_count": 87
+  },
+  {
+    "vertical": "professional_and_financial_services",
+    "month": "2019-03",
+    "scheme": "bacs",
+    "payment_count": 79
+  },
+  {
+    "vertical": "property",
+    "month": "2019-03",
+    "scheme": "bacs",
+    "payment_count": 35
+  },
+  {
+    "vertical": "societies_and_clubs",
+    "month": "2019-03",
+    "scheme": "bacs",
+    "payment_count": 6
+  },
+  {
+    "vertical": "sports_fitness",
+    "month": "2019-03",
+    "scheme": "bacs",
+    "payment_count": 585
+  },
+  {
+    "vertical": "sports_fitness",
+    "month": "2019-03",
+    "scheme": "sepa_core",
+    "payment_count": 6
+  },
+  {
+    "vertical": "tradesmen_and_non_professionals_services",
+    "month": "2019-03",
+    "scheme": "bacs",
+    "payment_count": 205
+  },
+  {
+    "vertical": "digital_services_media_telecoms",
+    "month": "2019-04",
+    "scheme": "sepa_core",
+    "payment_count": 8
+  },
+  {
+    "vertical": "professional_and_financial_services",
+    "month": "2019-04",
+    "scheme": "bacs",
+    "payment_count": 1
+  },
+  {
+    "vertical": "sports_fitness",
+    "month": "2019-04",
+    "scheme": "bacs",
+    "payment_count": 1
+  },
+  {
+    "vertical": "sports_fitness",
+    "month": "2019-04",
+    "scheme": "sepa_core",
+    "payment_count": 1
+  },
+  {
+    "vertical": "digital_services_media_telecoms",
+    "month": "2019-05",
+    "scheme": "sepa_core",
+    "payment_count": 6
+  },
+  {
+    "vertical": "digital_services_media_telecoms",
+    "month": "2019-06",
+    "scheme": "sepa_core",
+    "payment_count": 3
+  },
+  {
+    "vertical": "digital_services_media_telecoms",
+    "month": "2019-07",
+    "scheme": "sepa_core",
+    "payment_count": 7
+  },
+  {
+    "vertical": "sports_fitness",
+    "month": "2019-07",
+    "scheme": "bacs",
+    "payment_count": 1
+  },
+  {
+    "vertical": "digital_services_media_telecoms",
+    "month": "2019-08",
+    "scheme": "sepa_core",
+    "payment_count": 3
+  },
+  {
+    "vertical": "digital_services_media_telecoms",
+    "month": "2019-09",
+    "scheme": "sepa_core",
+    "payment_count": 2
+  },
+  {
+    "vertical": "digital_services_media_telecoms",
+    "month": "2019-10",
+    "scheme": "sepa_core",
+    "payment_count": 2
+  },
+  {
+    "vertical": "digital_services_media_telecoms",
+    "month": "2019-11",
+    "scheme": "sepa_core",
+    "payment_count": 1
+  },
+  {
+    "vertical": "digital_services_media_telecoms",
+    "month": "2019-12",
+    "scheme": "sepa_core",
+    "payment_count": 1
+  },
+  {
+    "vertical": "digital_services_media_telecoms",
+    "month": "2020-01",
+    "scheme": "sepa_core",
+    "payment_count": 1
+  },
+  {
+    "vertical": "digital_services_media_telecoms",
+    "month": "2020-02",
+    "scheme": "sepa_core",
+    "payment_count": 1
+  },
+  {
+    "vertical": "digital_services_media_telecoms",
+    "month": "2020-03",
+    "scheme": "sepa_core",
+    "payment_count": 1
+  }
+]

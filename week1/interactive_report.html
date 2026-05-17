@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Direct Payments — Interaktīvā Atskaite</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:#0f0f1a;color:#cdd6f4;font-family:'Segoe UI',system-ui,sans-serif}
+header{background:linear-gradient(135deg,#1e1e2e,#252540,#1e1e2e);padding:32px 32px 24px;
+  text-align:center;border-bottom:2px solid #7c9ef5;position:relative}
+header::before{content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 50% 0%,rgba(124,158,245,.13) 0%,transparent 65%)}
+.chip{display:inline-block;background:rgba(124,158,245,.12);color:#7c9ef5;
+  border:1px solid rgba(124,158,245,.28);padding:3px 14px;border-radius:20px;
+  font-size:.74em;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px;position:relative}
+header h1{font-size:1.9em;font-weight:700;color:#cdd6f4;position:relative;margin-bottom:5px}
+header h1 span{color:#7c9ef5}
+header p{color:#a6adc8;font-size:.9em;position:relative}
+
+.stats{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;
+  padding:18px 20px;background:#1e1e2e;border-bottom:1px solid #313244}
+.stat{background:#313244;padding:12px 20px;border-radius:12px;text-align:center;
+  min-width:105px;border-top:3px solid #7c9ef5;transition:all .3s}
+.stat:nth-child(2){border-top-color:#a6e3a1}.stat:nth-child(3){border-top-color:#f9e2af}
+.stat:nth-child(4){border-top-color:#cba6f7}.stat:nth-child(5){border-top-color:#f38ba8}
+.stat .n{font-size:1.5em;font-weight:700;color:#7c9ef5}
+.stat:nth-child(2) .n{color:#a6e3a1}.stat:nth-child(3) .n{color:#f9e2af}
+.stat:nth-child(4) .n{color:#cba6f7}.stat:nth-child(5) .n{color:#f38ba8}
+.stat .l{color:#a6adc8;font-size:.75em;margin-top:3px}
+
+.controls{max-width:1160px;margin:22px auto 0;padding:0 20px;display:flex;flex-wrap:wrap;gap:14px}
+.ctrl{background:#1e1e2e;border:1px solid #313244;border-radius:14px;padding:15px 18px;flex:1;min-width:250px}
+.ctrl h3{font-size:.76em;text-transform:uppercase;letter-spacing:.1em;color:#585b70;margin-bottom:11px}
+.date-row{display:flex;align-items:center;gap:8px}
+.date-row label{color:#a6adc8;font-size:.82em;white-space:nowrap}
+.date-row select{background:#252535;border:1px solid #313244;color:#cdd6f4;
+  padding:5px 8px;border-radius:8px;font-size:.83em;cursor:pointer;flex:1}
+.date-row select:focus{outline:1px solid #7c9ef5}
+.date-row .sep{color:#585b70}
+.vert-grid{display:flex;flex-wrap:wrap;gap:6px}
+.vbtn{background:#252535;border:1px solid #313244;color:#a6adc8;padding:5px 11px;
+  border-radius:20px;font-size:.76em;cursor:pointer;transition:all .15s;white-space:nowrap}
+.vbtn.active{color:var(--c);border-color:var(--c);
+  background:color-mix(in srgb,var(--c) 10%,#252535)}
+.vbtn:hover{background:#313244}
+.all-btn{border-color:#585b70;color:#585b70}
+.all-btn.active{color:#cdd6f4;border-color:#cdd6f4;background:#313244}
+
+.wrap{max-width:1160px;margin:20px auto 0;padding:0 20px}
+.card{background:#1e1e2e;border:1px solid #313244;border-radius:16px;padding:18px;margin-bottom:16px}
+.card.full{}
+.card h2{font-size:.95em;font-weight:600;color:#cdd6f4;margin-bottom:2px}
+.card .sub{font-size:.77em;color:#585b70;margin-bottom:13px}
+.card canvas{max-height:300px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.click-hint{font-size:.72em;color:#45475a;text-align:center;margin-top:7px;font-style:italic}
+
+/* Deep-dive */
+#deepDive{display:none;margin-top:4px}
+.dd-head{background:#1e1e2e;border:1px solid #313244;border-radius:16px 16px 0 0;
+  padding:16px 22px;display:flex;align-items:center;gap:12px}
+.dd-dot{width:11px;height:11px;border-radius:50%;flex-shrink:0}
+.dd-info{flex:1}
+.dd-info h2{font-size:1.05em;color:#cdd6f4;margin-bottom:1px}
+.dd-info p{font-size:.79em;color:#a6adc8}
+.dd-x{background:#313244;border:none;color:#a6adc8;width:28px;height:28px;border-radius:50%;
+  font-size:.95em;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.dd-x:hover{background:#45475a;color:#cdd6f4}
+.dd-kpis{display:flex;gap:10px;flex-wrap:wrap;padding:14px 22px;
+  background:#171726;border-left:1px solid #313244;border-right:1px solid #313244}
+.kpi{flex:1;min-width:95px;background:#252535;border-radius:9px;padding:10px 14px;text-align:center}
+.kpi .kv{font-size:1.25em;font-weight:700}
+.kpi .kl{font-size:.73em;color:#a6adc8;margin-top:2px}
+.dd-charts{display:grid;grid-template-columns:1fr 1fr;
+  border:1px solid #313244;border-top:none;border-radius:0 0 16px 16px;overflow:hidden}
+.dd-chart{background:#1e1e2e;padding:18px}
+.dd-chart:first-child{border-right:1px solid #313244}
+.dd-chart h3{font-size:.82em;color:#a6adc8;margin-bottom:11px}
+.dd-chart canvas{max-height:220px}
+
+/* Ieskatu panelis */
+.ins-panel{background:#171724;border:1px solid #313244;border-radius:16px;
+  padding:18px 20px;margin-bottom:16px;transition:border-color .3s}
+.ins-top{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.ins-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;transition:background .3s}
+.ins-top h3{font-size:.95em;font-weight:600;color:#cdd6f4;margin:0;flex:1}
+.ins-period{font-size:.78em;color:#585b70;white-space:nowrap}
+.ins-badge{padding:4px 12px;border-radius:20px;font-size:.78em;font-weight:700;
+  background:#252535;border:1px solid currentColor;white-space:nowrap}
+.ins-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ins-card{background:#1e1e2e;border:1px solid #313244;border-radius:10px;padding:14px 16px}
+.ins-card h4{font-size:.73em;text-transform:uppercase;letter-spacing:.09em;
+  color:#45475a;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.ins-card p{font-size:.86em;color:#a6adc8;line-height:1.7}
+.ins-card p strong{color:#cdd6f4}
+.ins-card p strong.good{color:#a6e3a1}
+.ins-card p strong.warn{color:#f9e2af}
+.ins-card p strong.bad{color:#f38ba8}
+
+footer{text-align:center;padding:20px;color:#45475a;border-top:1px solid #313244;
+  font-size:.8em;margin-top:30px}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="chip">FITA ML kurss · 2026</div>
+  <h1>Direct Payments — <span>Interaktīvā Atskaite</span></h1>
+  <p>Mara Medne &nbsp;·&nbsp; Izvēlies nozari un periodu — visi grafiki atjaunojas ar reāliem datiem</p>
+</header>
+
+<div class="stats">
+  <div class="stat"><div class="n" id="sTot">—</div><div class="l">Kopā maksājumi</div></div>
+  <div class="stat"><div class="n" id="sCnt">—</div><div class="l">Darījumu skaits</div></div>
+  <div class="stat"><div class="n" id="sMand">—</div><div class="l">Jauni mandāti</div></div>
+  <div class="stat"><div class="n" id="sAvg">—</div><div class="l">Vid. darījums</div></div>
+  <div class="stat"><div class="n" id="sPer">Visas</div><div class="l">Aktīvā nozare</div></div>
+</div>
+
+<div class="controls">
+  <div class="ctrl">
+    <h3>Laika periods</h3>
+    <div class="date-row">
+      <label>No</label><select id="selFrom"></select>
+      <span class="sep">→</span>
+      <label>Līdz</label><select id="selTo"></select>
+    </div>
+  </div>
+  <div class="ctrl">
+    <h3>Nozare</h3>
+    <div class="vert-grid" id="vertBtns">
+      <button class="vbtn all-btn active" data-vert="all">Visas nozares</button>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="card full" style="margin-top:0">
+    <h2>Kopējie maksājumi pa nozarēm</h2>
+    <div class="sub">Klikšķini uz joslas, lai filtrētu visus grafikus</div>
+    <canvas id="chartVert"></canvas>
+    <div class="click-hint">👆 Klikšķinis uz joslas → visi grafiki filtrējas pēc šīs nozares</div>
+  </div>
+
+  <div class="ins-panel" id="insPanel">
+    <div class="ins-top">
+      <div class="ins-dot" id="insDot"></div>
+      <h3 id="insTitle">Ieskats</h3>
+      <span class="ins-period" id="insPeriod"></span>
+      <span class="ins-badge" id="insBadge"></span>
+    </div>
+    <div class="ins-grid">
+      <div class="ins-card">
+        <h4>📊 Galvenie skaitļi</h4>
+        <p id="insNumbers">—</p>
+      </div>
+      <div class="ins-card">
+        <h4>⚖️ Salīdzinājums ar citām nozarēm</h4>
+        <p id="insCompare">—</p>
+      </div>
+      <div class="ins-card">
+        <h4>📈 Tendence periodā</h4>
+        <p id="insTrendTxt">—</p>
+      </div>
+      <div class="ins-card">
+        <h4>💡 Ieteikums</h4>
+        <p id="insReco">—</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="two">
+    <div class="card">
+      <h2>Maksājumu skaits pa mēnešiem</h2>
+      <div class="sub" id="subPay">Reāli dati no datubāzes</div>
+      <canvas id="chartPay"></canvas>
+    </div>
+    <div class="card">
+      <h2>Jauni mandāti pa mēnešiem</h2>
+      <div class="sub" id="subMand">Reāli dati no datubāzes</div>
+      <canvas id="chartMand"></canvas>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:0">
+    <h2>Maksājumu shēmas pa mēnešiem (BACS vs SEPA Core)</h2>
+    <div class="sub" id="subScheme">Reāli dati no datubāzes</div>
+    <canvas id="chartScheme"></canvas>
+  </div>
+
+  <!-- Deep-dive -->
+  <div id="deepDive">
+    <div class="dd-head">
+      <div class="dd-dot" id="ddDot"></div>
+      <div class="dd-info"><h2 id="ddTitle"></h2><p id="ddSub"></p></div>
+      <button class="dd-x" id="ddX">✕</button>
+    </div>
+    <div class="dd-kpis" id="ddKpis"></div>
+    <div class="dd-charts">
+      <div class="dd-chart">
+        <h3>Top organizācijas pēc maksājumu apjoma</h3>
+        <canvas id="chartDrillPay"></canvas>
+      </div>
+      <div class="dd-chart">
+        <h3>Top organizācijas pēc mandātu skaita</h3>
+        <canvas id="chartDrillMand"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>Interaktīvā atskaite · Chart.js · reāli DB dati · FITA ML kurss 2026 · Mara Medne</footer>
+
+<script>
+// ══════════════════════════════════════════════════════
+// REĀLIE DATI NO DATUBĀZES (monthly_by_vertical.json)
+// ══════════════════════════════════════════════════════
+const PAY_VM = [
+  {v:"digital_services_media_telecoms",m:"2018-04",n:9,amt:1493.0},
+  {v:"healthcare",m:"2018-04",n:3,amt:989.12},
+  {v:"property",m:"2018-04",n:3,amt:881.0},
+  {v:"sports_fitness",m:"2018-04",n:36,amt:1232.36},
+  {v:"tradesmen_and_non_professionals_services",m:"2018-04",n:3,amt:94.0},
+  {v:"digital_services_media_telecoms",m:"2018-05",n:84,amt:20396.83},
+  {v:"healthcare",m:"2018-05",n:12,amt:7210.0},
+  {v:"professional_and_financial_services",m:"2018-05",n:28,amt:13528.53},
+  {v:"property",m:"2018-05",n:37,amt:14292.48},
+  {v:"societies_and_clubs",m:"2018-05",n:11,amt:8023.7},
+  {v:"sports_fitness",m:"2018-05",n:150,amt:6712.91},
+  {v:"tradesmen_and_non_professionals_services",m:"2018-05",n:81,amt:4502.89},
+  {v:"digital_services_media_telecoms",m:"2018-06",n:123,amt:29972.99},
+  {v:"healthcare",m:"2018-06",n:42,amt:11347.96},
+  {v:"professional_and_financial_services",m:"2018-06",n:288,amt:33612.12},
+  {v:"property",m:"2018-06",n:138,amt:48734.86},
+  {v:"societies_and_clubs",m:"2018-06",n:18,amt:13802.0},
+  {v:"sports_fitness",m:"2018-06",n:333,amt:26439.62},
+  {v:"tradesmen_and_non_professionals_services",m:"2018-06",n:329,amt:21480.7},
+  {v:"digital_services_media_telecoms",m:"2018-07",n:235,amt:56679.5},
+  {v:"healthcare",m:"2018-07",n:89,amt:33602.42},
+  {v:"professional_and_financial_services",m:"2018-07",n:432,amt:55896.41},
+  {v:"property",m:"2018-07",n:198,amt:57788.68},
+  {v:"societies_and_clubs",m:"2018-07",n:21,amt:14440.2},
+  {v:"sports_fitness",m:"2018-07",n:632,amt:48599.71},
+  {v:"tradesmen_and_non_professionals_services",m:"2018-07",n:568,amt:37858.76},
+  {v:"digital_services_media_telecoms",m:"2018-08",n:312,amt:73244.01},
+  {v:"healthcare",m:"2018-08",n:96,amt:23445.53},
+  {v:"professional_and_financial_services",m:"2018-08",n:527,amt:87112.13},
+  {v:"property",m:"2018-08",n:254,amt:62569.62},
+  {v:"societies_and_clubs",m:"2018-08",n:22,amt:14439.3},
+  {v:"sports_fitness",m:"2018-08",n:828,amt:55079.66},
+  {v:"tradesmen_and_non_professionals_services",m:"2018-08",n:631,amt:31745.16},
+  {v:"digital_services_media_telecoms",m:"2018-09",n:284,amt:69836.42},
+  {v:"healthcare",m:"2018-09",n:87,amt:19925.14},
+  {v:"professional_and_financial_services",m:"2018-09",n:172,amt:41561.57},
+  {v:"property",m:"2018-09",n:187,amt:38159.65},
+  {v:"societies_and_clubs",m:"2018-09",n:22,amt:16248.3},
+  {v:"sports_fitness",m:"2018-09",n:755,amt:49775.54},
+  {v:"tradesmen_and_non_professionals_services",m:"2018-09",n:586,amt:32047.28},
+  {v:"digital_services_media_telecoms",m:"2018-10",n:553,amt:136135.09},
+  {v:"healthcare",m:"2018-10",n:97,amt:18122.44},
+  {v:"professional_and_financial_services",m:"2018-10",n:967,amt:141322.2},
+  {v:"property",m:"2018-10",n:374,amt:97113.19},
+  {v:"societies_and_clubs",m:"2018-10",n:22,amt:16228.3},
+  {v:"sports_fitness",m:"2018-10",n:1691,amt:94773.5},
+  {v:"tradesmen_and_non_professionals_services",m:"2018-10",n:995,amt:42047.8},
+  {v:"digital_services_media_telecoms",m:"2018-11",n:490,amt:110059.21},
+  {v:"healthcare",m:"2018-11",n:116,amt:30766.85},
+  {v:"professional_and_financial_services",m:"2018-11",n:639,amt:99470.39},
+  {v:"property",m:"2018-11",n:311,amt:73280.39},
+  {v:"societies_and_clubs",m:"2018-11",n:24,amt:18177.4},
+  {v:"sports_fitness",m:"2018-11",n:1387,amt:78501.24},
+  {v:"tradesmen_and_non_professionals_services",m:"2018-11",n:1250,amt:52251.91},
+  {v:"digital_services_media_telecoms",m:"2018-12",n:413,amt:141316.43},
+  {v:"healthcare",m:"2018-12",n:107,amt:32414.69},
+  {v:"professional_and_financial_services",m:"2018-12",n:227,amt:49643.81},
+  {v:"property",m:"2018-12",n:224,amt:43145.37},
+  {v:"societies_and_clubs",m:"2018-12",n:24,amt:18147.4},
+  {v:"sports_fitness",m:"2018-12",n:1268,amt:85096.92},
+  {v:"tradesmen_and_non_professionals_services",m:"2018-12",n:1020,amt:46452.81},
+  {v:"digital_services_media_telecoms",m:"2019-01",n:632,amt:244691.92},
+  {v:"healthcare",m:"2019-01",n:288,amt:83359.04},
+  {v:"professional_and_financial_services",m:"2019-01",n:1052,amt:168867.25},
+  {v:"property",m:"2019-01",n:441,amt:108905.41},
+  {v:"societies_and_clubs",m:"2019-01",n:28,amt:25337.4},
+  {v:"sports_fitness",m:"2019-01",n:2523,amt:143754.43},
+  {v:"tradesmen_and_non_professionals_services",m:"2019-01",n:1218,amt:53942.68},
+  {v:"digital_services_media_telecoms",m:"2019-02",n:563,amt:202999.93},
+  {v:"healthcare",m:"2019-02",n:293,amt:82763.6},
+  {v:"professional_and_financial_services",m:"2019-02",n:714,amt:99841.14},
+  {v:"property",m:"2019-02",n:343,amt:82053.86},
+  {v:"societies_and_clubs",m:"2019-02",n:30,amt:25675.6},
+  {v:"sports_fitness",m:"2019-02",n:1973,amt:106806.64},
+  {v:"tradesmen_and_non_professionals_services",m:"2019-02",n:1194,amt:47840.21},
+  {v:"digital_services_media_telecoms",m:"2019-03",n:261,amt:80390.12},
+  {v:"healthcare",m:"2019-03",n:87,amt:24087.36},
+  {v:"professional_and_financial_services",m:"2019-03",n:79,amt:12506.61},
+  {v:"property",m:"2019-03",n:35,amt:7438.02},
+  {v:"societies_and_clubs",m:"2019-03",n:6,amt:835.5},
+  {v:"sports_fitness",m:"2019-03",n:591,amt:36551.64},
+  {v:"tradesmen_and_non_professionals_services",m:"2019-03",n:205,amt:11512.11}
+];
+
+const MAN_VM = [
+  {v:"digital_services_media_telecoms",m:"2018-04",n:23},
+  {v:"healthcare",m:"2018-04",n:4},
+  {v:"professional_and_financial_services",m:"2018-04",n:5},
+  {v:"property",m:"2018-04",n:18},
+  {v:"societies_and_clubs",m:"2018-04",n:6},
+  {v:"sports_fitness",m:"2018-04",n:38},
+  {v:"tradesmen_and_non_professionals_services",m:"2018-04",n:20},
+  {v:"digital_services_media_telecoms",m:"2018-05",n:395},
+  {v:"healthcare",m:"2018-05",n:14},
+  {v:"professional_and_financial_services",m:"2018-05",n:42},
+  {v:"property",m:"2018-05",n:44},
+  {v:"societies_and_clubs",m:"2018-05",n:6},
+  {v:"sports_fitness",m:"2018-05",n:136},
+  {v:"tradesmen_and_non_professionals_services",m:"2018-05",n:353},
+  {v:"digital_services_media_telecoms",m:"2018-06",n:96},
+  {v:"healthcare",m:"2018-06",n:19},
+  {v:"professional_and_financial_services",m:"2018-06",n:329},
+  {v:"property",m:"2018-06",n:110},
+  {v:"societies_and_clubs",m:"2018-06",n:10},
+  {v:"sports_fitness",m:"2018-06",n:192},
+  {v:"tradesmen_and_non_professionals_services",m:"2018-06",n:427},
+  {v:"digital_services_media_telecoms",m:"2018-07",n:95},
+  {v:"healthcare",m:"2018-07",n:22},
+  {v:"professional_and_financial_services",m:"2018-07",n:134},
+  {v:"property",m:"2018-07",n:65},
+  {v:"societies_and_clubs",m:"2018-07",n:1},
+  {v:"sports_fitness",m:"2018-07",n:568},
+  {v:"tradesmen_and_non_professionals_services",m:"2018-07",n:255},
+  {v:"digital_services_media_telecoms",m:"2018-08",n:63},
+  {v:"healthcare",m:"2018-08",n:17},
+  {v:"professional_and_financial_services",m:"2018-08",n:171},
+  {v:"property",m:"2018-08",n:54},
+  {v:"sports_fitness",m:"2018-08",n:304},
+  {v:"tradesmen_and_non_professionals_services",m:"2018-08",n:234},
+  {v:"digital_services_media_telecoms",m:"2018-09",n:98},
+  {v:"healthcare",m:"2018-09",n:21},
+  {v:"professional_and_financial_services",m:"2018-09",n:69},
+  {v:"property",m:"2018-09",n:39},
+  {v:"societies_and_clubs",m:"2018-09",n:2},
+  {v:"sports_fitness",m:"2018-09",n:365},
+  {v:"tradesmen_and_non_professionals_services",m:"2018-09",n:164},
+  {v:"digital_services_media_telecoms",m:"2018-10",n:80},
+  {v:"healthcare",m:"2018-10",n:17},
+  {v:"professional_and_financial_services",m:"2018-10",n:67},
+  {v:"property",m:"2018-10",n:47},
+  {v:"sports_fitness",m:"2018-10",n:341},
+  {v:"tradesmen_and_non_professionals_services",m:"2018-10",n:149},
+  {v:"digital_services_media_telecoms",m:"2018-11",n:66},
+  {v:"healthcare",m:"2018-11",n:19},
+  {v:"professional_and_financial_services",m:"2018-11",n:46},
+  {v:"property",m:"2018-11",n:30},
+  {v:"societies_and_clubs",m:"2018-11",n:2},
+  {v:"sports_fitness",m:"2018-11",n:270},
+  {v:"tradesmen_and_non_professionals_services",m:"2018-11",n:418},
+  {v:"digital_services_media_telecoms",m:"2018-12",n:64},
+  {v:"healthcare",m:"2018-12",n:45},
+  {v:"professional_and_financial_services",m:"2018-12",n:37},
+  {v:"property",m:"2018-12",n:24},
+  {v:"sports_fitness",m:"2018-12",n:699},
+  {v:"tradesmen_and_non_professionals_services",m:"2018-12",n:135},
+  {v:"digital_services_media_telecoms",m:"2019-01",n:93},
+  {v:"healthcare",m:"2019-01",n:80},
+  {v:"professional_and_financial_services",m:"2019-01",n:62},
+  {v:"property",m:"2019-01",n:31},
+  {v:"societies_and_clubs",m:"2019-01",n:4},
+  {v:"sports_fitness",m:"2019-01",n:658},
+  {v:"tradesmen_and_non_professionals_services",m:"2019-01",n:119},
+  {v:"digital_services_media_telecoms",m:"2019-02",n:76},
+  {v:"healthcare",m:"2019-02",n:91},
+  {v:"professional_and_financial_services",m:"2019-02",n:40},
+  {v:"property",m:"2019-02",n:50},
+  {v:"societies_and_clubs",m:"2019-02",n:2},
+  {v:"sports_fitness",m:"2019-02",n:370},
+  {v:"tradesmen_and_non_professionals_services",m:"2019-02",n:80},
+  {v:"digital_services_media_telecoms",m:"2019-03",n:2},
+  {v:"healthcare",m:"2019-03",n:4},
+  {v:"professional_and_financial_services",m:"2019-03",n:1},
+  {v:"property",m:"2019-03",n:4},
+  {v:"sports_fitness",m:"2019-03",n:18},
+  {v:"tradesmen_and_non_professionals_services",m:"2019-03",n:11}
+];
+
+const SCHEME_VM = [
+  {v:"digital_services_media_telecoms",m:"2018-04",s:"bacs",n:8},
+  {v:"digital_services_media_telecoms",m:"2018-04",s:"sepa_core",n:1},
+  {v:"healthcare",m:"2018-04",s:"bacs",n:3},
+  {v:"property",m:"2018-04",s:"bacs",n:3},
+  {v:"sports_fitness",m:"2018-04",s:"bacs",n:36},
+  {v:"tradesmen_and_non_professionals_services",m:"2018-04",s:"bacs",n:3},
+  {v:"digital_services_media_telecoms",m:"2018-05",s:"bacs",n:76},
+  {v:"digital_services_media_telecoms",m:"2018-05",s:"sepa_core",n:8},
+  {v:"healthcare",m:"2018-05",s:"bacs",n:12},
+  {v:"professional_and_financial_services",m:"2018-05",s:"bacs",n:28},
+  {v:"property",m:"2018-05",s:"bacs",n:36},
+  {v:"property",m:"2018-05",s:"sepa_core",n:1},
+  {v:"societies_and_clubs",m:"2018-05",s:"bacs",n:11},
+  {v:"sports_fitness",m:"2018-05",s:"bacs",n:150},
+  {v:"tradesmen_and_non_professionals_services",m:"2018-05",s:"bacs",n:81},
+  {v:"digital_services_media_telecoms",m:"2018-06",s:"bacs",n:108},
+  {v:"digital_services_media_telecoms",m:"2018-06",s:"sepa_core",n:15},
+  {v:"healthcare",m:"2018-06",s:"bacs",n:42},
+  {v:"professional_and_financial_services",m:"2018-06",s:"bacs",n:288},
+  {v:"property",m:"2018-06",s:"bacs",n:138},
+  {v:"societies_and_clubs",m:"2018-06",s:"bacs",n:18},
+  {v:"sports_fitness",m:"2018-06",s:"bacs",n:321},
+  {v:"sports_fitness",m:"2018-06",s:"sepa_core",n:12},
+  {v:"tradesmen_and_non_professionals_services",m:"2018-06",s:"bacs",n:329},
+  {v:"digital_services_media_telecoms",m:"2018-07",s:"bacs",n:193},
+  {v:"digital_services_media_telecoms",m:"2018-07",s:"sepa_core",n:42},
+  {v:"healthcare",m:"2018-07",s:"bacs",n:89},
+  {v:"professional_and_financial_services",m:"2018-07",s:"bacs",n:432},
+  {v:"property",m:"2018-07",s:"bacs",n:194},
+  {v:"property",m:"2018-07",s:"sepa_core",n:4},
+  {v:"societies_and_clubs",m:"2018-07",s:"bacs",n:21},
+  {v:"sports_fitness",m:"2018-07",s:"bacs",n:612},
+  {v:"sports_fitness",m:"2018-07",s:"sepa_core",n:20},
+  {v:"tradesmen_and_non_professionals_services",m:"2018-07",s:"bacs",n:568},
+  {v:"digital_services_media_telecoms",m:"2018-08",s:"bacs",n:244},
+  {v:"digital_services_media_telecoms",m:"2018-08",s:"sepa_core",n:68},
+  {v:"healthcare",m:"2018-08",s:"bacs",n:96},
+  {v:"professional_and_financial_services",m:"2018-08",s:"bacs",n:527},
+  {v:"property",m:"2018-08",s:"bacs",n:245},
+  {v:"property",m:"2018-08",s:"sepa_core",n:9},
+  {v:"societies_and_clubs",m:"2018-08",s:"bacs",n:22},
+  {v:"sports_fitness",m:"2018-08",s:"bacs",n:793},
+  {v:"sports_fitness",m:"2018-08",s:"sepa_core",n:35},
+  {v:"tradesmen_and_non_professionals_services",m:"2018-08",s:"bacs",n:631},
+  {v:"digital_services_media_telecoms",m:"2018-09",s:"bacs",n:205},
+  {v:"digital_services_media_telecoms",m:"2018-09",s:"sepa_core",n:79},
+  {v:"healthcare",m:"2018-09",s:"bacs",n:87},
+  {v:"professional_and_financial_services",m:"2018-09",s:"bacs",n:172},
+  {v:"property",m:"2018-09",s:"bacs",n:181},
+  {v:"property",m:"2018-09",s:"sepa_core",n:6},
+  {v:"societies_and_clubs",m:"2018-09",s:"bacs",n:22},
+  {v:"sports_fitness",m:"2018-09",s:"bacs",n:736},
+  {v:"sports_fitness",m:"2018-09",s:"sepa_core",n:19},
+  {v:"tradesmen_and_non_professionals_services",m:"2018-09",s:"bacs",n:586},
+  {v:"digital_services_media_telecoms",m:"2018-10",s:"bacs",n:401},
+  {v:"digital_services_media_telecoms",m:"2018-10",s:"sepa_core",n:152},
+  {v:"healthcare",m:"2018-10",s:"bacs",n:97},
+  {v:"professional_and_financial_services",m:"2018-10",s:"bacs",n:966},
+  {v:"professional_and_financial_services",m:"2018-10",s:"sepa_core",n:1},
+  {v:"property",m:"2018-10",s:"bacs",n:373},
+  {v:"property",m:"2018-10",s:"sepa_core",n:1},
+  {v:"societies_and_clubs",m:"2018-10",s:"bacs",n:22},
+  {v:"sports_fitness",m:"2018-10",s:"bacs",n:1589},
+  {v:"sports_fitness",m:"2018-10",s:"sepa_core",n:102},
+  {v:"tradesmen_and_non_professionals_services",m:"2018-10",s:"bacs",n:995},
+  {v:"digital_services_media_telecoms",m:"2018-11",s:"bacs",n:351},
+  {v:"digital_services_media_telecoms",m:"2018-11",s:"sepa_core",n:139},
+  {v:"healthcare",m:"2018-11",s:"bacs",n:116},
+  {v:"professional_and_financial_services",m:"2018-11",s:"bacs",n:638},
+  {v:"professional_and_financial_services",m:"2018-11",s:"sepa_core",n:1},
+  {v:"property",m:"2018-11",s:"bacs",n:310},
+  {v:"property",m:"2018-11",s:"sepa_core",n:1},
+  {v:"societies_and_clubs",m:"2018-11",s:"bacs",n:24},
+  {v:"sports_fitness",m:"2018-11",s:"bacs",n:1325},
+  {v:"sports_fitness",m:"2018-11",s:"sepa_core",n:62},
+  {v:"tradesmen_and_non_professionals_services",m:"2018-11",s:"bacs",n:1250},
+  {v:"digital_services_media_telecoms",m:"2018-12",s:"bacs",n:263},
+  {v:"digital_services_media_telecoms",m:"2018-12",s:"sepa_core",n:150},
+  {v:"healthcare",m:"2018-12",s:"bacs",n:107},
+  {v:"professional_and_financial_services",m:"2018-12",s:"bacs",n:226},
+  {v:"professional_and_financial_services",m:"2018-12",s:"sepa_core",n:1},
+  {v:"property",m:"2018-12",s:"bacs",n:223},
+  {v:"property",m:"2018-12",s:"sepa_core",n:1},
+  {v:"societies_and_clubs",m:"2018-12",s:"bacs",n:24},
+  {v:"sports_fitness",m:"2018-12",s:"bacs",n:1190},
+  {v:"sports_fitness",m:"2018-12",s:"sepa_core",n:78},
+  {v:"tradesmen_and_non_professionals_services",m:"2018-12",s:"bacs",n:1020},
+  {v:"digital_services_media_telecoms",m:"2019-01",s:"bacs",n:476},
+  {v:"digital_services_media_telecoms",m:"2019-01",s:"sepa_core",n:156},
+  {v:"healthcare",m:"2019-01",s:"bacs",n:288},
+  {v:"professional_and_financial_services",m:"2019-01",s:"bacs",n:1052},
+  {v:"property",m:"2019-01",s:"bacs",n:441},
+  {v:"societies_and_clubs",m:"2019-01",s:"bacs",n:28},
+  {v:"sports_fitness",m:"2019-01",s:"bacs",n:2438},
+  {v:"sports_fitness",m:"2019-01",s:"sepa_core",n:85},
+  {v:"tradesmen_and_non_professionals_services",m:"2019-01",s:"bacs",n:1218},
+  {v:"digital_services_media_telecoms",m:"2019-02",s:"bacs",n:400},
+  {v:"digital_services_media_telecoms",m:"2019-02",s:"sepa_core",n:163},
+  {v:"healthcare",m:"2019-02",s:"bacs",n:293},
+  {v:"professional_and_financial_services",m:"2019-02",s:"bacs",n:714},
+  {v:"property",m:"2019-02",s:"bacs",n:343},
+  {v:"societies_and_clubs",m:"2019-02",s:"bacs",n:30},
+  {v:"sports_fitness",m:"2019-02",s:"bacs",n:1877},
+  {v:"sports_fitness",m:"2019-02",s:"sepa_core",n:96},
+  {v:"tradesmen_and_non_professionals_services",m:"2019-02",s:"bacs",n:1194},
+  {v:"digital_services_media_telecoms",m:"2019-03",s:"bacs",n:144},
+  {v:"digital_services_media_telecoms",m:"2019-03",s:"sepa_core",n:117},
+  {v:"healthcare",m:"2019-03",s:"bacs",n:87},
+  {v:"professional_and_financial_services",m:"2019-03",s:"bacs",n:79},
+  {v:"property",m:"2019-03",s:"bacs",n:35},
+  {v:"societies_and_clubs",m:"2019-03",s:"bacs",n:6},
+  {v:"sports_fitness",m:"2019-03",s:"bacs",n:585},
+  {v:"sports_fitness",m:"2019-03",s:"sepa_core",n:6},
+  {v:"tradesmen_and_non_professionals_services",m:"2019-03",s:"bacs",n:205},
+];
+
+const VERTDATA = [
+  {v:'digital_services_media_telecoms',         total:1186462.10},
+  {v:'professional_and_financial_services',     total:803472.16},
+  {v:'sports_fitness',                          total:734094.17},
+  {v:'property',                                total:634362.53},
+  {v:'tradesmen_and_non_professionals_services',total:381776.31},
+  {v:'healthcare',                              total:368034.15},
+  {v:'societies_and_clubs',                     total:171355.10},
+];
+
+const ORG_PAY = [
+  {id:'cb4fb774',v:'healthcare',total:305346.57},
+  {id:'6c87af1f',v:'tradesmen_and_non_professionals_services',total:256616.50},
+  {id:'f0ae2253',v:'professional_and_financial_services',total:236687.00},
+  {id:'e00a57ec',v:'digital_services_media_telecoms',total:208954.12},
+  {id:'6b52bae9',v:'property',total:172870.52},
+  {id:'9e575091',v:'digital_services_media_telecoms',total:168601.80},
+  {id:'96674fe2',v:'societies_and_clubs',total:168052.10},
+  {id:'05d17d8b',v:'professional_and_financial_services',total:143468.64},
+  {id:'0c6eb9b6',v:'professional_and_financial_services',total:112164.50},
+  {id:'9e73d40c',v:'property',total:90673.43},
+  {id:'55c02a75',v:'sports_fitness',total:87920.50},
+  {id:'a5e9757a',v:'digital_services_media_telecoms',total:77642.92},
+  {id:'5a9ea7bc',v:'digital_services_media_telecoms',total:73633.38},
+  {id:'27e25b66',v:'property',total:72609.27},
+  {id:'2c99b65a',v:'sports_fitness',total:69379.00},
+  {id:'9afae934',v:'digital_services_media_telecoms',total:69098.60},
+  {id:'7e138d00',v:'digital_services_media_telecoms',total:59080.70},
+  {id:'a59e861b',v:'sports_fitness',total:53336.25},
+  {id:'de392eb3',v:'property',total:52701.00},
+  {id:'88af12ee',v:'sports_fitness',total:50947.00},
+];
+const ORG_MAN = [
+  {id:'6c87af1f',v:'tradesmen_and_non_professionals_services',m:1972},
+  {id:'55c02a75',v:'sports_fitness',m:765},
+  {id:'2c99b65a',v:'sports_fitness',m:485},
+  {id:'f0ae2253',v:'professional_and_financial_services',m:349},
+  {id:'e73707dd',v:'digital_services_media_telecoms',m:314},
+  {id:'6469fd8d',v:'sports_fitness',m:244},
+  {id:'335c3f29',v:'sports_fitness',m:243},
+  {id:'42a5660d',v:'sports_fitness',m:230},
+  {id:'a59e861b',v:'sports_fitness',m:230},
+  {id:'f08c9c4a',v:'sports_fitness',m:216},
+  {id:'e4b4c692',v:'sports_fitness',m:206},
+  {id:'e00a57ec',v:'digital_services_media_telecoms',m:189},
+  {id:'37344f17',v:'sports_fitness',m:161},
+  {id:'36bddd58',v:'sports_fitness',m:126},
+  {id:'05d17d8b',v:'professional_and_financial_services',m:117},
+  {id:'4b5f9e48',v:'property',m:115},
+  {id:'cb4fb774',v:'healthcare',m:104},
+  {id:'8c52fe34',v:'property',m:95},
+  {id:'03f8d559',v:'sports_fitness',m:92},
+  {id:'8436ca2d',v:'sports_fitness',m:85},
+];
+
+// ══════════════════════════════════════════════════════
+// KONFIGURĀCIJA
+// ══════════════════════════════════════════════════════
+const PALETTE = ['#7c9ef5','#a6e3a1','#f9e2af','#f38ba8','#cba6f7','#89dceb','#fab387'];
+const VERT_LV = {
+  digital_services_media_telecoms:          'Digitālie & Telekomu.',
+  professional_and_financial_services:      'Prof. & Finanšu',
+  sports_fitness:                           'Sports & Fitness',
+  property:                                 'Īpašums',
+  tradesmen_and_non_professionals_services: 'Amatnieki & Nep.',
+  healthcare:                               'Veselības aprūpe',
+  societies_and_clubs:                      'Biedrības & Klubi',
+};
+const LV_MON=['','Jan','Feb','Mar','Apr','Mai','Jūn','Jūl','Aug','Sep','Okt','Nov','Dec'];
+
+Chart.defaults.color='#a6adc8';
+Chart.defaults.borderColor='#252535';
+
+// Visi unikālie mēneši (no PAY_VM, sakārtoti)
+const ALL_MONTHS = [...new Set(PAY_VM.map(d=>d.m))].sort();
+
+let selVert = null;
+let fromIdx = 0, toIdx = ALL_MONTHS.length - 1;
+let cVert, cPay, cMand, cDPay, cDMand;
+
+function vertColor(v){ return PALETTE[VERTDATA.findIndex(d=>d.v===v) % PALETTE.length]; }
+function fmtM(s){ const[yr,mo]=s.split('-'); return LV_MON[+mo]+' '+yr; }
+function fmtK(v){ return v>=1000?'€'+(v/1000).toFixed(0)+'k':'€'+v.toFixed(0); }
+
+// ══════════════════════════════════════════════════════
+// DATUMU IZVĒLNE
+// ══════════════════════════════════════════════════════
+function initDates(){
+  const sf=document.getElementById('selFrom'), st=document.getElementById('selTo');
+  ALL_MONTHS.forEach((m,i)=>{
+    sf.appendChild(new Option(fmtM(m),i));
+    st.appendChild(new Option(fmtM(m),i));
+  });
+  st.selectedIndex=ALL_MONTHS.length-1;
+  function ch(){
+    fromIdx=+sf.value; toIdx=+st.value;
+    if(fromIdx>toIdx){toIdx=fromIdx;st.value=fromIdx;}
+    rebuildTimeSeries(); updateStats();
+  }
+  sf.addEventListener('change',ch); st.addEventListener('change',ch);
+}
+
+// ══════════════════════════════════════════════════════
+// NOZARU POGAS
+// ══════════════════════════════════════════════════════
+function initVertBtns(){
+  const wrap=document.getElementById('vertBtns');
+  VERTDATA.forEach((d,i)=>{
+    const b=document.createElement('button');
+    b.className='vbtn'; b.textContent=VERT_LV[d.v]||d.v;
+    b.style.setProperty('--c',PALETTE[i%PALETTE.length]);
+    b.dataset.vert=d.v;
+    b.addEventListener('click',()=>pickVert(d.v));
+    wrap.appendChild(b);
+  });
+  document.querySelector('.all-btn').addEventListener('click',()=>pickVert(null));
+}
+
+function pickVert(v){
+  selVert=v;
+  document.querySelectorAll('.vbtn').forEach(b=>{
+    b.classList.toggle('active',
+      v===null ? b.dataset.vert==='all' : b.dataset.vert===v);
+  });
+  document.getElementById('sPer').textContent = v ? VERT_LV[v] : 'Visas';
+  buildVert();
+  rebuildTimeSeries();
+  updateStats();
+  if(v) showDeepDive(v); else hideDeepDive();
+}
+
+// ══════════════════════════════════════════════════════
+// STATISTIKAS JOSLA
+// ══════════════════════════════════════════════════════
+function updateStats(){
+  const mRange = ALL_MONTHS.slice(fromIdx, toIdx+1);
+  const rows = PAY_VM.filter(d=> mRange.includes(d.m) && (!selVert || d.v===selVert));
+  const mand = MAN_VM.filter(d=> mRange.includes(d.m) && (!selVert || d.v===selVert));
+  const tot  = rows.reduce((s,d)=>s+d.amt,0);
+  const cnt  = rows.reduce((s,d)=>s+d.n,0);
+  const man  = mand.reduce((s,d)=>s+d.n,0);
+  document.getElementById('sTot').textContent  = fmtK(tot);
+  document.getElementById('sCnt').textContent  = cnt.toLocaleString();
+  document.getElementById('sMand').textContent = man.toLocaleString();
+  document.getElementById('sAvg').textContent  = cnt ? fmtK(tot/cnt) : '—';
+}
+
+// ══════════════════════════════════════════════════════
+// 1. NOZARU JOSLU GRAFIKS
+// ══════════════════════════════════════════════════════
+function buildVert(){
+  const bgs = VERTDATA.map(d=>
+    (selVert===null||selVert===d.v) ? vertColor(d.v)+'cc' : '#313244');
+  const borders = VERTDATA.map(d=>
+    (selVert===null||selVert===d.v) ? vertColor(d.v) : '#45475a');
+  if(cVert) cVert.destroy();
+  cVert=new Chart(document.getElementById('chartVert'),{
+    type:'bar',
+    data:{
+      labels:VERTDATA.map(d=>VERT_LV[d.v]),
+      datasets:[{data:VERTDATA.map(d=>d.total),
+        backgroundColor:bgs, borderColor:borders,
+        borderWidth:2, borderRadius:6,
+        hoverBackgroundColor:VERTDATA.map(d=>vertColor(d.v))}]
+    },
+    options:{responsive:true,
+      plugins:{legend:{display:false},
+        tooltip:{callbacks:{label:c=>' '+fmtK(c.parsed.y)+
+          ' ('+(c.parsed.y/VERTDATA.reduce((s,d)=>s+d.total,0)*100).toFixed(1)+'%)'}}},
+      scales:{
+        x:{ticks:{color:'#a6adc8',font:{size:10}},grid:{color:'#252535'}},
+        y:{ticks:{color:'#a6adc8',callback:v=>fmtK(v)},grid:{color:'#252535'}}},
+      onClick:(_,els)=>{ if(els.length) pickVert(VERTDATA[els[0].index].v); },
+      onHover:(_,els)=>{ document.getElementById('chartVert').style.cursor=els.length?'pointer':'default'; }
+    }
+  });
+}
+
+// ══════════════════════════════════════════════════════
+// LAIKA RINDAS (maksājumi + mandāti) — kopīga loģika
+// ══════════════════════════════════════════════════════
+function getMonthSeries(source){
+  const mRange = ALL_MONTHS.slice(fromIdx, toIdx+1);
+  return mRange.map(m=>{
+    const rows = source.filter(d=>d.m===m && (!selVert||d.v===selVert));
+    return rows.reduce((s,d)=>s+d.n, 0);
+  });
+}
+function getMonthLabels(){
+  return ALL_MONTHS.slice(fromIdx,toIdx+1).map(fmtM);
+}
+
+function buildPayChart(){
+  const labels=getMonthLabels(), values=getMonthSeries(PAY_VM);
+  const color=selVert ? vertColor(selVert) : '#7c9ef5';
+  const name=selVert ? VERT_LV[selVert] : 'Visas nozares';
+  document.getElementById('subPay').textContent=
+    fmtM(ALL_MONTHS[fromIdx])+' → '+fmtM(ALL_MONTHS[toIdx])+(selVert?' · '+VERT_LV[selVert]:'');
+  if(cPay) cPay.destroy();
+  cPay=new Chart(document.getElementById('chartPay'),{
+    type:'line',
+    data:{labels,datasets:[{label:name,data:values,
+      borderColor:color,backgroundColor:color+'1a',
+      borderWidth:2.5,fill:true,tension:0.35,
+      pointBackgroundColor:'#1e1e2e',pointBorderColor:color,
+      pointBorderWidth:2,pointRadius:4}]},
+    options:{responsive:true,
+      plugins:{legend:{display:false},
+        tooltip:{callbacks:{label:c=>' '+c.parsed.y.toLocaleString()+' maksājumi'}}},
+      scales:{
+        x:{ticks:{color:'#a6adc8',font:{size:9},maxRotation:45},grid:{color:'#252535'}},
+        y:{ticks:{color:'#a6adc8'},grid:{color:'#252535'}}}}
+  });
+}
+
+function buildMandChart(){
+  const labels=getMonthLabels(), values=getMonthSeries(MAN_VM);
+  const color=selVert ? vertColor(selVert) : '#a6e3a1';
+  const name=selVert ? VERT_LV[selVert] : 'Visas nozares';
+  document.getElementById('subMand').textContent=
+    fmtM(ALL_MONTHS[fromIdx])+' → '+fmtM(ALL_MONTHS[toIdx])+(selVert?' · '+VERT_LV[selVert]:'');
+  if(cMand) cMand.destroy();
+  cMand=new Chart(document.getElementById('chartMand'),{
+    type:'bar',
+    data:{labels,datasets:[{label:name,data:values,
+      backgroundColor:color+'66',borderColor:color,borderWidth:1.5,borderRadius:4}]},
+    options:{responsive:true,
+      plugins:{legend:{display:false},
+        tooltip:{callbacks:{label:c=>' '+c.parsed.y.toLocaleString()+' mandāti'}}},
+      scales:{
+        x:{ticks:{color:'#a6adc8',font:{size:9},maxRotation:45},grid:{color:'#252535'}},
+        y:{ticks:{color:'#a6adc8'},grid:{color:'#252535'}}}}
+  });
+}
+
+function buildSchemeChart(){
+  const mRange = ALL_MONTHS.slice(fromIdx, toIdx+1);
+  const labels = mRange.map(fmtM);
+  const bacs  = mRange.map(m =>
+    SCHEME_VM.filter(d=>d.m===m && d.s==='bacs'     && (!selVert||d.v===selVert))
+             .reduce((s,d)=>s+d.n,0));
+  const sepa  = mRange.map(m =>
+    SCHEME_VM.filter(d=>d.m===m && d.s==='sepa_core' && (!selVert||d.v===selVert))
+             .reduce((s,d)=>s+d.n,0));
+
+  document.getElementById('subScheme').textContent =
+    fmtM(ALL_MONTHS[fromIdx])+' → '+fmtM(ALL_MONTHS[toIdx])+
+    (selVert?' · '+VERT_LV[selVert]:'');
+
+  if(window.cScheme) window.cScheme.destroy();
+  window.cScheme = new Chart(document.getElementById('chartScheme'),{
+    type:'bar',
+    data:{labels, datasets:[
+      {label:'BACS',     data:bacs, backgroundColor:'#7c9ef5aa',
+       borderColor:'#7c9ef5', borderWidth:1.5, borderRadius:3, stack:'s'},
+      {label:'SEPA Core',data:sepa, backgroundColor:'#a6e3a1aa',
+       borderColor:'#a6e3a1', borderWidth:1.5, borderRadius:3, stack:'s'},
+    ]},
+    options:{responsive:true,
+      plugins:{
+        legend:{position:'top', labels:{color:'#a6adc8',padding:14,font:{size:11}}},
+        tooltip:{mode:'index', callbacks:{
+          label:c=>' '+c.dataset.label+': '+c.parsed.y.toLocaleString()+' maks.'}}},
+      scales:{
+        x:{stacked:true, ticks:{color:'#a6adc8',font:{size:9},maxRotation:45},
+           grid:{color:'#252535'}},
+        y:{stacked:true, ticks:{color:'#a6adc8'}, grid:{color:'#252535'}}}}
+  });
+}
+
+// ══════════════════════════════════════════════════════
+// DINAMISKIE IESKATI
+// ══════════════════════════════════════════════════════
+function buildInsights(){
+  const mRange  = ALL_MONTHS.slice(fromIdx, toIdx+1);
+  const months  = mRange.length;
+  const label   = selVert ? VERT_LV[selVert] : 'Visas nozares';
+  const color   = selVert ? vertColor(selVert) : '#7c9ef5';
+
+  // Selektētās nozares/visu stats
+  const payR = PAY_VM.filter(d => mRange.includes(d.m) && (!selVert||d.v===selVert));
+  const manR = MAN_VM.filter(d => mRange.includes(d.m) && (!selVert||d.v===selVert));
+  const schR = SCHEME_VM.filter(d => mRange.includes(d.m) && (!selVert||d.v===selVert));
+
+  const totalAmt = payR.reduce((s,d)=>s+d.amt,0);
+  const totalCnt = payR.reduce((s,d)=>s+d.n,0);
+  const totalMan = manR.reduce((s,d)=>s+d.n,0);
+  const avgPay   = totalCnt ? totalAmt/totalCnt : 0;
+  const sepaCnt  = schR.filter(d=>d.s==='sepa_core').reduce((s,d)=>s+d.n,0);
+  const sepaRat  = totalCnt ? sepaCnt/totalCnt*100 : 0;
+
+  // Tendence: pirmā puse vs otrā puse
+  const monthlyCnts = mRange.map(m =>
+    PAY_VM.filter(d=>d.m===m&&(!selVert||d.v===selVert)).reduce((s,d)=>s+d.n,0));
+  const mid  = Math.floor(monthlyCnts.length/2)||1;
+  const avg1 = monthlyCnts.slice(0,mid).reduce((s,v)=>s+v,0)/mid;
+  const avg2 = monthlyCnts.slice(mid).reduce((s,v)=>s+v,0)/Math.max(monthlyCnts.length-mid,1);
+  const pctChange = avg1>0 ? ((avg2-avg1)/avg1*100) : 0;
+
+  let trendWord, trendBadge, trendBadgeColor;
+  if      (pctChange >  15){ trendWord='aug';     trendBadge='↑ Augošs';  trendBadgeColor='#a6e3a1'; }
+  else if (pctChange < -15){ trendWord='krītas';  trendBadge='↓ Krītošs'; trendBadgeColor='#f38ba8'; }
+  else                     { trendWord='stabils'; trendBadge='→ Stabils'; trendBadgeColor='#f9e2af'; }
+
+  // Visas nozares tajā pašā periodā (ranžēšanai)
+  const allSt = VERTDATA.map(d=>{
+    const vp=PAY_VM.filter(r=>mRange.includes(r.m)&&r.v===d.v);
+    return {v:d.v, total:vp.reduce((s,r)=>s+r.amt,0), cnt:vp.reduce((s,r)=>s+r.n,0)};
+  }).filter(d=>d.cnt>0).sort((a,b)=>b.total-a.total);
+
+  const grandTotal  = allSt.reduce((s,d)=>s+d.total,0);
+  const allAvgPay   = allSt.reduce((s,d)=>s+(d.cnt?d.total/d.cnt:0),0)/Math.max(allSt.length,1);
+  const rank        = selVert ? allSt.findIndex(d=>d.v===selVert)+1 : 0;
+  const totalVerts  = allSt.length;
+
+  // ── Tekstu ģenerēšana ──────────────────────────────
+  const per = fmtM(ALL_MONTHS[fromIdx])+' – '+fmtM(ALL_MONTHS[toIdx]);
+
+  // 1. Galvenie skaitļi
+  let txt1 = `Periodā <strong>${per}</strong> (${months} mēn.) veikti `+
+    `<strong>${totalCnt.toLocaleString()}</strong> maksājumi `+
+    `<strong class="good">${fmtK(totalAmt)}</strong> kopvērtībā. `+
+    `Vidējais maksājums — <strong>${fmtK(avgPay)}</strong>. `+
+    `Reģistrēti <strong>${totalMan.toLocaleString()}</strong> jauni mandāti.`;
+  if(sepaRat>3) txt1+=` SEPA Core veido <strong>${sepaRat.toFixed(1)}%</strong> no visiem maksājumiem.`;
+
+  // 2. Salīdzinājums
+  let txt2='';
+  if(selVert){
+    const rkStr = rank===1?'<strong class="good">1. vieta — līderis</strong>':
+                  rank<=3?`<strong class="good">${rank}. vieta no ${totalVerts}</strong>`:
+                  rank===totalVerts?`<strong class="bad">${rank}. vieta (pēdējā)</strong>`:
+                  `<strong class="warn">${rank}. vieta no ${totalVerts}</strong>`;
+    txt2=`Pēc kopējā apjoma — ${rkStr}. `;
+    if(avgPay>allAvgPay*1.2)
+      txt2+=`Vidējais maksājums (<strong class="good">${fmtK(avgPay)}</strong>) par `+
+        `${((avgPay/allAvgPay-1)*100).toFixed(0)}% augstāks par nozaru vidējo `+
+        `(${fmtK(allAvgPay)}) — augstvērtīgi darījumi. `;
+    else if(avgPay<allAvgPay*0.8)
+      txt2+=`Vidējais maksājums (<strong class="warn">${fmtK(avgPay)}</strong>) ir `+
+        `${((1-avgPay/allAvgPay)*100).toFixed(0)}% zemāks par nozaru vidējo (${fmtK(allAvgPay)}). `;
+    else
+      txt2+=`Vidējais maksājums (${fmtK(avgPay)}) ir tuvu nozaru vidējam (${fmtK(allAvgPay)}). `;
+    txt2+=`Veido <strong>${grandTotal>0?(totalAmt/grandTotal*100).toFixed(1):0}%</strong> `+
+      `no visu nozaru kopapjoma.`;
+  } else {
+    const top=allSt[0]||{};
+    txt2=`Kopā <strong>${totalVerts} aktīvās nozares</strong> ģenerē `+
+      `<strong class="good">${fmtK(grandTotal)}</strong> periodā. `+
+      `Dominē <strong>${VERT_LV[top.v]||''}</strong> ar `+
+      `<strong>${((top.total/grandTotal)*100).toFixed(1)}%</strong> no kopapjoma. `+
+      `Mazākā daļa — <strong>${VERT_LV[(allSt[allSt.length-1]||{}).v]||''}</strong>.`;
+  }
+
+  // 3. Tendence
+  let txt3='';
+  if(monthlyCnts.length<2){
+    txt3='Pārāk īss periods tendences noteikšanai (nepieciešami vismaz 2 mēneši).';
+  } else {
+    const pStr=`${pctChange>0?'+':''}${pctChange.toFixed(0)}%`;
+    const tCol=trendWord==='aug'?'good':trendWord==='krītas'?'bad':'warn';
+    txt3=`Maksājumu skaits <strong class="${tCol}">${trendWord==='aug'?'pieaug':trendWord==='krītas'?'samazinās':'ir stabils'}</strong>. `+
+      `1. pusē vidēji <strong>${Math.round(avg1).toLocaleString()}</strong> maks./mēn., `+
+      `2. pusē — <strong>${Math.round(avg2).toLocaleString()}</strong> (`+
+      `<strong class="${tCol}">${pStr}</strong>). `;
+    if(totalMan>0)
+      txt3+=`Jauni mandāti: vidēji <strong>${Math.round(totalMan/months).toLocaleString()}</strong>/mēn.`;
+  }
+
+  // 4. Ieteikums
+  let txt4='';
+  if(!selVert){
+    txt4 = trendWord==='aug'
+      ? '🟢 <strong>Platforma kopumā aug.</strong> Pievērsiet uzmanību nozarēm ar augstu vidējo maksājumu — tās rada vislielāko vērtību uz mandātu.'
+      : trendWord==='krītas'
+      ? '🔴 <strong>Kopējs kritums.</strong> Izskatiet, kuras nozares samazinās visstraujāk un vai ir sezonalitāte vai strukturālas problēmas.'
+      : '🔵 <strong>Stabila dinamika.</strong> Fokusējieties uz top nozaru attīstību un mazāko nozaru potenciāla izvērtēšanu.';
+  } else if(trendWord==='aug'&&rank<=2){
+    txt4='🟢 <strong>Vadošā pozīcija ar augšupejošu tendenci.</strong> Turpiniet investēt mandātu piesaistē. Izpētiet, kuri mēneši uzrāda vislielāko aktivitāti, un plānojiet resursus atbilstoši.';
+  } else if(trendWord==='aug'&&rank>3){
+    txt4='🟡 <strong>Augošs potenciāls.</strong> Pozitīva tendence, taču apjoms joprojām neliels. Vērts izpētīt izaugsmes dzinējus un apsvērt mērogošanu.';
+  } else if(trendWord==='krītas'&&rank<=3){
+    txt4='🟡 <strong>Brīdinājums: liela nozare samazinās.</strong> Kritums lielā apjoma nozarē ir nopietns signāls. Ieteicams detalizēti analizēt mandātu atteikumus un maksājumu neveikšanas gadījumus.';
+  } else if(trendWord==='krītas'){
+    txt4='🔴 <strong>Dubultrisks: mazs apjoms + kritums.</strong> Izvērtējiet, vai šajā nozarē ir ilgtspējīgs biznesa modelis un vai ir mērķtiecīgi turpināt investīcijas.';
+  } else if(avgPay>allAvgPay*1.25){
+    txt4='🟢 <strong>Premium segments.</strong> Augsts vidējais maksājums norāda uz augstvērtīgiem klientiem. Prioritizējiet šo klientu noturēšanu un cross-sell iespējas.';
+  } else if(sepaRat>15){
+    txt4='🔵 <strong>Starptautiskais tirgus.</strong> Augsts SEPA Core īpatsvars liecina par Eiropas klientiem. Apsveriet SEPA produktu paplašināšanu šajā nozarē.';
+  } else {
+    txt4='🔵 <strong>Stabila nozare.</strong> Rādītāji ir līdzsvaroti. Sekojiet mandātu dinamikai kā agrīnam signālam par nākotnes maksājumu apjomu.';
+  }
+
+  // ── DOM atjaunināšana ──────────────────────────────
+  document.getElementById('insDot').style.background   = color;
+  document.getElementById('insTitle').textContent       = label;
+  document.getElementById('insPeriod').textContent      = per+' · '+months+' mēn.';
+  const badge = document.getElementById('insBadge');
+  badge.textContent = trendBadge;
+  badge.style.color = trendBadgeColor;
+  badge.style.borderColor = trendBadgeColor;
+  document.getElementById('insNumbers').innerHTML  = txt1;
+  document.getElementById('insCompare').innerHTML  = txt2;
+  document.getElementById('insTrendTxt').innerHTML = txt3;
+  document.getElementById('insReco').innerHTML     = txt4;
+}
+
+function rebuildTimeSeries(){ buildPayChart(); buildMandChart(); buildSchemeChart(); buildInsights(); }
+
+// ══════════════════════════════════════════════════════
+// DEEP-DIVE — TOP ORGANIZĀCIJAS
+// ══════════════════════════════════════════════════════
+function showDeepDive(v){
+  const label=VERT_LV[v]||v, color=vertColor(v);
+  const orgs=ORG_PAY.filter(d=>d.v===v).sort((a,b)=>b.total-a.total);
+  const mands=ORG_MAN.filter(d=>d.v===v).sort((a,b)=>b.m-a.m);
+  const totV=orgs.reduce((s,d)=>s+d.total,0);
+  const totM=mands.reduce((s,d)=>s+d.m,0);
+  const allT=VERTDATA.reduce((s,d)=>s+d.total,0);
+
+  document.getElementById('ddDot').style.background=color;
+  document.getElementById('ddTitle').textContent=label+' — dziļā analīze';
+  document.getElementById('ddSub').textContent=orgs.length+' organizācijas redzamas datubāzē';
+
+  document.getElementById('ddKpis').innerHTML=[
+    {v:fmtK(totV),       l:'Kopā maksājumi'},
+    {v:(totV/allT*100).toFixed(1)+'%',l:'No visām nozarēm'},
+    {v:totM||'—',        l:'Mandāti (top 20)'},
+    {v:totM?fmtK(totV/totM):'—',l:'Vid. uz mandātu'},
+  ].map(k=>`<div class="kpi"><div class="kv" style="color:${color}">${k.v}</div>
+    <div class="kl">${k.l}</div></div>`).join('');
+
+  if(cDPay) cDPay.destroy();
+  cDPay=new Chart(document.getElementById('chartDrillPay'),{
+    type:'bar',
+    data:{labels:orgs.map((_,i)=>'Org #'+(i+1)),
+      datasets:[{data:orgs.map(d=>d.total),
+        backgroundColor:color+'88',borderColor:color,borderWidth:2,borderRadius:4}]},
+    options:{indexAxis:'y',responsive:true,
+      plugins:{legend:{display:false},
+        tooltip:{callbacks:{label:c=>' '+fmtK(c.parsed.x)}}},
+      scales:{x:{ticks:{color:'#a6adc8',callback:v=>fmtK(v)},grid:{color:'#252535'}},
+              y:{ticks:{color:'#a6adc8',font:{size:9}},grid:{color:'#252535'}}}}
+  });
+
+  if(cDMand) cDMand.destroy();
+  cDMand=new Chart(document.getElementById('chartDrillMand'),{
+    type:'bar',
+    data:{labels:mands.map((_,i)=>'Org #'+(i+1)),
+      datasets:[{data:mands.map(d=>d.m),
+        backgroundColor:'#f9e2af66',borderColor:'#f9e2af',borderWidth:2,borderRadius:4}]},
+    options:{indexAxis:'y',responsive:true,
+      plugins:{legend:{display:false},
+        tooltip:{callbacks:{label:c=>' '+c.parsed.x+' mandāti'}}},
+      scales:{x:{ticks:{color:'#a6adc8'},grid:{color:'#252535'}},
+              y:{ticks:{color:'#a6adc8',font:{size:9}},grid:{color:'#252535'}}}}
+  });
+
+  document.getElementById('deepDive').style.display='block';
+  document.getElementById('deepDive').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function hideDeepDive(){
+  document.getElementById('deepDive').style.display='none';
+  [cDPay,cDMand].forEach(c=>{if(c){c.destroy();}});
+  cDPay=cDMand=null;
+}
+document.getElementById('ddX').addEventListener('click',()=>pickVert(null));
+
+// ══════════════════════════════════════════════════════
+// START
+// ══════════════════════════════════════════════════════
+initDates();
+initVertBtns();
+buildVert();
+rebuildTimeSeries();
+updateStats();
+</script>
+</body>
+</html>

@@ -1,0 +1,993 @@
+{
+  "payments_by_vertical_month": [
+    {
+      "vertical": "digital_services_media_telecoms",
+      "month": "2018-04",
+      "payment_count": 9,
+      "total_amount": 1493.0
+    },
+    {
+      "vertical": "healthcare",
+      "month": "2018-04",
+      "payment_count": 3,
+      "total_amount": 989.12
+    },
+    {
+      "vertical": "property",
+      "month": "2018-04",
+      "payment_count": 3,
+      "total_amount": 881.0
+    },
+    {
+      "vertical": "sports_fitness",
+      "month": "2018-04",
+      "payment_count": 36,
+      "total_amount": 1232.36
+    },
+    {
+      "vertical": "tradesmen_and_non_professionals_services",
+      "month": "2018-04",
+      "payment_count": 3,
+      "total_amount": 94.0
+    },
+    {
+      "vertical": "digital_services_media_telecoms",
+      "month": "2018-05",
+      "payment_count": 84,
+      "total_amount": 20396.83
+    },
+    {
+      "vertical": "healthcare",
+      "month": "2018-05",
+      "payment_count": 12,
+      "total_amount": 7210.0
+    },
+    {
+      "vertical": "professional_and_financial_services",
+      "month": "2018-05",
+      "payment_count": 28,
+      "total_amount": 13528.53
+    },
+    {
+      "vertical": "property",
+      "month": "2018-05",
+      "payment_count": 37,
+      "total_amount": 14292.48
+    },
+    {
+      "vertical": "societies_and_clubs",
+      "month": "2018-05",
+      "payment_count": 11,
+      "total_amount": 8023.7
+    },
+    {
+      "vertical": "sports_fitness",
+      "month": "2018-05",
+      "payment_count": 150,
+      "total_amount": 6712.91
+    },
+    {
+      "vertical": "tradesmen_and_non_professionals_services",
+      "month": "2018-05",
+      "payment_count": 81,
+      "total_amount": 4502.89
+    },
+    {
+      "vertical": "digital_services_media_telecoms",
+      "month": "2018-06",
+      "payment_count": 123,
+      "total_amount": 29972.99
+    },
+    {
+      "vertical": "healthcare",
+      "month": "2018-06",
+      "payment_count": 42,
+      "total_amount": 11347.96
+    },
+    {
+      "vertical": "professional_and_financial_services",
+      "month": "2018-06",
+      "payment_count": 288,
+      "total_amount": 33612.12
+    },
+    {
+      "vertical": "property",
+      "month": "2018-06",
+      "payment_count": 138,
+      "total_amount": 48734.86
+    },
+    {
+      "vertical": "societies_and_clubs",
+      "month": "2018-06",
+      "payment_count": 18,
+      "total_amount": 13802.0
+    },
+    {
+      "vertical": "sports_fitness",
+      "month": "2018-06",
+      "payment_count": 333,
+      "total_amount": 26439.62
+    },
+    {
+      "vertical": "tradesmen_and_non_professionals_services",
+      "month": "2018-06",
+      "payment_count": 329,
+      "total_amount": 21480.7
+    },
+    {
+      "vertical": "digital_services_media_telecoms",
+      "month": "2018-07",
+      "payment_count": 235,
+      "total_amount": 56679.5
+    },
+    {
+      "vertical": "healthcare",
+      "month": "2018-07",
+      "payment_count": 89,
+      "total_amount": 33602.42
+    },
+    {
+      "vertical": "professional_and_financial_services",
+      "month": "2018-07",
+      "payment_count": 432,
+      "total_amount": 55896.41
+    },
+    {
+      "vertical": "property",
+      "month": "2018-07",
+      "payment_count": 198,
+      "total_amount": 57788.68
+    },
+    {
+      "vertical": "societies_and_clubs",
+      "month": "2018-07",
+      "payment_count": 21,
+      "total_amount": 14440.2
+    },
+    {
+      "vertical": "sports_fitness",
+      "month": "2018-07",
+      "payment_count": 632,
+      "total_amount": 48599.71
+    },
+    {
+      "vertical": "tradesmen_and_non_professionals_services",
+      "month": "2018-07",
+      "payment_count": 568,
+      "total_amount": 37858.76
+    },
+    {
+      "vertical": "digital_services_media_telecoms",
+      "month": "2018-08",
+      "payment_count": 312,
+      "total_amount": 73244.01
+    },
+    {
+      "vertical": "healthcare",
+      "month": "2018-08",
+      "payment_count": 96,
+      "total_amount": 23445.53
+    },
+    {
+      "vertical": "professional_and_financial_services",
+      "month": "2018-08",
+      "payment_count": 527,
+      "total_amount": 87112.13
+    },
+    {
+      "vertical": "property",
+      "month": "2018-08",
+      "payment_count": 254,
+      "total_amount": 62569.62
+    },
+    {
+      "vertical": "societies_and_clubs",
+      "month": "2018-08",
+      "payment_count": 22,
+      "total_amount": 14439.3
+    },
+    {
+      "vertical": "sports_fitness",
+      "month": "2018-08",
+      "payment_count": 828,
+      "total_amount": 55079.66
+    },
+    {
+      "vertical": "tradesmen_and_non_professionals_services",
+      "month": "2018-08",
+      "payment_count": 631,
+      "total_amount": 31745.16
+    },
+    {
+      "vertical": "digital_services_media_telecoms",
+      "month": "2018-09",
+      "payment_count": 284,
+      "total_amount": 69836.42
+    },
+    {
+      "vertical": "healthcare",
+      "month": "2018-09",
+      "payment_count": 87,
+      "total_amount": 19925.14
+    },
+    {
+      "vertical": "professional_and_financial_services",
+      "month": "2018-09",
+      "payment_count": 172,
+      "total_amount": 41561.57
+    },
+    {
+      "vertical": "property",
+      "month": "2018-09",
+      "payment_count": 187,
+      "total_amount": 38159.65
+    },
+    {
+      "vertical": "societies_and_clubs",
+      "month": "2018-09",
+      "payment_count": 22,
+      "total_amount": 16248.3
+    },
+    {
+      "vertical": "sports_fitness",
+      "month": "2018-09",
+      "payment_count": 755,
+      "total_amount": 49775.54
+    },
+    {
+      "vertical": "tradesmen_and_non_professionals_services",
+      "month": "2018-09",
+      "payment_count": 586,
+      "total_amount": 32047.28
+    },
+    {
+      "vertical": "digital_services_media_telecoms",
+      "month": "2018-10",
+      "payment_count": 553,
+      "total_amount": 136135.09
+    },
+    {
+      "vertical": "healthcare",
+      "month": "2018-10",
+      "payment_count": 97,
+      "total_amount": 18122.44
+    },
+    {
+      "vertical": "professional_and_financial_services",
+      "month": "2018-10",
+      "payment_count": 967,
+      "total_amount": 141322.2
+    },
+    {
+      "vertical": "property",
+      "month": "2018-10",
+      "payment_count": 374,
+      "total_amount": 97113.19
+    },
+    {
+      "vertical": "societies_and_clubs",
+      "month": "2018-10",
+      "payment_count": 22,
+      "total_amount": 16228.3
+    },
+    {
+      "vertical": "sports_fitness",
+      "month": "2018-10",
+      "payment_count": 1691,
+      "total_amount": 94773.5
+    },
+    {
+      "vertical": "tradesmen_and_non_professionals_services",
+      "month": "2018-10",
+      "payment_count": 995,
+      "total_amount": 42047.8
+    },
+    {
+      "vertical": "digital_services_media_telecoms",
+      "month": "2018-11",
+      "payment_count": 490,
+      "total_amount": 110059.21
+    },
+    {
+      "vertical": "healthcare",
+      "month": "2018-11",
+      "payment_count": 116,
+      "total_amount": 30766.85
+    },
+    {
+      "vertical": "professional_and_financial_services",
+      "month": "2018-11",
+      "payment_count": 639,
+      "total_amount": 99470.39
+    },
+    {
+      "vertical": "property",
+      "month": "2018-11",
+      "payment_count": 311,
+      "total_amount": 73280.39
+    },
+    {
+      "vertical": "societies_and_clubs",
+      "month": "2018-11",
+      "payment_count": 24,
+      "total_amount": 18177.4
+    },
+    {
+      "vertical": "sports_fitness",
+      "month": "2018-11",
+      "payment_count": 1387,
+      "total_amount": 78501.24
+    },
+    {
+      "vertical": "tradesmen_and_non_professionals_services",
+      "month": "2018-11",
+      "payment_count": 1250,
+      "total_amount": 52251.91
+    },
+    {
+      "vertical": "digital_services_media_telecoms",
+      "month": "2018-12",
+      "payment_count": 413,
+      "total_amount": 141316.43
+    },
+    {
+      "vertical": "healthcare",
+      "month": "2018-12",
+      "payment_count": 107,
+      "total_amount": 32414.69
+    },
+    {
+      "vertical": "professional_and_financial_services",
+      "month": "2018-12",
+      "payment_count": 227,
+      "total_amount": 49643.81
+    },
+    {
+      "vertical": "property",
+      "month": "2018-12",
+      "payment_count": 224,
+      "total_amount": 43145.37
+    },
+    {
+      "vertical": "societies_and_clubs",
+      "month": "2018-12",
+      "payment_count": 24,
+      "total_amount": 18147.4
+    },
+    {
+      "vertical": "sports_fitness",
+      "month": "2018-12",
+      "payment_count": 1268,
+      "total_amount": 85096.92
+    },
+    {
+      "vertical": "tradesmen_and_non_professionals_services",
+      "month": "2018-12",
+      "payment_count": 1020,
+      "total_amount": 46452.81
+    },
+    {
+      "vertical": "digital_services_media_telecoms",
+      "month": "2019-01",
+      "payment_count": 632,
+      "total_amount": 244691.92
+    },
+    {
+      "vertical": "healthcare",
+      "month": "2019-01",
+      "payment_count": 288,
+      "total_amount": 83359.04
+    },
+    {
+      "vertical": "professional_and_financial_services",
+      "month": "2019-01",
+      "payment_count": 1052,
+      "total_amount": 168867.25
+    },
+    {
+      "vertical": "property",
+      "month": "2019-01",
+      "payment_count": 441,
+      "total_amount": 108905.41
+    },
+    {
+      "vertical": "societies_and_clubs",
+      "month": "2019-01",
+      "payment_count": 28,
+      "total_amount": 25337.4
+    },
+    {
+      "vertical": "sports_fitness",
+      "month": "2019-01",
+      "payment_count": 2523,
+      "total_amount": 143754.43
+    },
+    {
+      "vertical": "tradesmen_and_non_professionals_services",
+      "month": "2019-01",
+      "payment_count": 1218,
+      "total_amount": 53942.68
+    },
+    {
+      "vertical": "digital_services_media_telecoms",
+      "month": "2019-02",
+      "payment_count": 563,
+      "total_amount": 202999.93
+    },
+    {
+      "vertical": "healthcare",
+      "month": "2019-02",
+      "payment_count": 293,
+      "total_amount": 82763.6
+    },
+    {
+      "vertical": "professional_and_financial_services",
+      "month": "2019-02",
+      "payment_count": 714,
+      "total_amount": 99841.14
+    },
+    {
+      "vertical": "property",
+      "month": "2019-02",
+      "payment_count": 343,
+      "total_amount": 82053.86
+    },
+    {
+      "vertical": "societies_and_clubs",
+      "month": "2019-02",
+      "payment_count": 30,
+      "total_amount": 25675.6
+    },
+    {
+      "vertical": "sports_fitness",
+      "month": "2019-02",
+      "payment_count": 1973,
+      "total_amount": 106806.64
+    },
+    {
+      "vertical": "tradesmen_and_non_professionals_services",
+      "month": "2019-02",
+      "payment_count": 1194,
+      "total_amount": 47840.21
+    },
+    {
+      "vertical": "digital_services_media_telecoms",
+      "month": "2019-03",
+      "payment_count": 261,
+      "total_amount": 80390.12
+    },
+    {
+      "vertical": "healthcare",
+      "month": "2019-03",
+      "payment_count": 87,
+      "total_amount": 24087.36
+    },
+    {
+      "vertical": "professional_and_financial_services",
+      "month": "2019-03",
+      "payment_count": 79,
+      "total_amount": 12506.61
+    },
+    {
+      "vertical": "property",
+      "month": "2019-03",
+      "payment_count": 35,
+      "total_amount": 7438.02
+    },
+    {
+      "vertical": "societies_and_clubs",
+      "month": "2019-03",
+      "payment_count": 6,
+      "total_amount": 835.5
+    },
+    {
+      "vertical": "sports_fitness",
+      "month": "2019-03",
+      "payment_count": 591,
+      "total_amount": 36551.64
+    },
+    {
+      "vertical": "tradesmen_and_non_professionals_services",
+      "month": "2019-03",
+      "payment_count": 205,
+      "total_amount": 11512.11
+    },
+    {
+      "vertical": "digital_services_media_telecoms",
+      "month": "2019-04",
+      "payment_count": 8,
+      "total_amount": 3439.68
+    },
+    {
+      "vertical": "professional_and_financial_services",
+      "month": "2019-04",
+      "payment_count": 1,
+      "total_amount": 110.0
+    },
+    {
+      "vertical": "sports_fitness",
+      "month": "2019-04",
+      "payment_count": 2,
+      "total_amount": 460.0
+    },
+    {
+      "vertical": "digital_services_media_telecoms",
+      "month": "2019-05",
+      "payment_count": 6,
+      "total_amount": 2974.06
+    },
+    {
+      "vertical": "digital_services_media_telecoms",
+      "month": "2019-06",
+      "payment_count": 3,
+      "total_amount": 2317.29
+    },
+    {
+      "vertical": "digital_services_media_telecoms",
+      "month": "2019-07",
+      "payment_count": 7,
+      "total_amount": 3331.25
+    },
+    {
+      "vertical": "sports_fitness",
+      "month": "2019-07",
+      "payment_count": 1,
+      "total_amount": 310.0
+    },
+    {
+      "vertical": "digital_services_media_telecoms",
+      "month": "2019-08",
+      "payment_count": 3,
+      "total_amount": 2277.29
+    },
+    {
+      "vertical": "digital_services_media_telecoms",
+      "month": "2019-09",
+      "payment_count": 2,
+      "total_amount": 1420.29
+    },
+    {
+      "vertical": "digital_services_media_telecoms",
+      "month": "2019-10",
+      "payment_count": 2,
+      "total_amount": 1410.29
+    },
+    {
+      "vertical": "digital_services_media_telecoms",
+      "month": "2019-11",
+      "payment_count": 1,
+      "total_amount": 429.3
+    },
+    {
+      "vertical": "digital_services_media_telecoms",
+      "month": "2019-12",
+      "payment_count": 1,
+      "total_amount": 419.3
+    },
+    {
+      "vertical": "digital_services_media_telecoms",
+      "month": "2020-01",
+      "payment_count": 1,
+      "total_amount": 419.3
+    },
+    {
+      "vertical": "digital_services_media_telecoms",
+      "month": "2020-02",
+      "payment_count": 1,
+      "total_amount": 409.3
+    },
+    {
+      "vertical": "digital_services_media_telecoms",
+      "month": "2020-03",
+      "payment_count": 1,
+      "total_amount": 399.3
+    }
+  ],
+  "mandates_by_vertical_month": [
+    {
+      "vertical": "digital_services_media_telecoms",
+      "month": "2018-03",
+      "mandate_count": 1
+    },
+    {
+      "vertical": "digital_services_media_telecoms",
+      "month": "2018-04",
+      "mandate_count": 23
+    },
+    {
+      "vertical": "healthcare",
+      "month": "2018-04",
+      "mandate_count": 4
+    },
+    {
+      "vertical": "professional_and_financial_services",
+      "month": "2018-04",
+      "mandate_count": 5
+    },
+    {
+      "vertical": "property",
+      "month": "2018-04",
+      "mandate_count": 18
+    },
+    {
+      "vertical": "societies_and_clubs",
+      "month": "2018-04",
+      "mandate_count": 6
+    },
+    {
+      "vertical": "sports_fitness",
+      "month": "2018-04",
+      "mandate_count": 38
+    },
+    {
+      "vertical": "tradesmen_and_non_professionals_services",
+      "month": "2018-04",
+      "mandate_count": 20
+    },
+    {
+      "vertical": "digital_services_media_telecoms",
+      "month": "2018-05",
+      "mandate_count": 395
+    },
+    {
+      "vertical": "healthcare",
+      "month": "2018-05",
+      "mandate_count": 14
+    },
+    {
+      "vertical": "professional_and_financial_services",
+      "month": "2018-05",
+      "mandate_count": 42
+    },
+    {
+      "vertical": "property",
+      "month": "2018-05",
+      "mandate_count": 44
+    },
+    {
+      "vertical": "societies_and_clubs",
+      "month": "2018-05",
+      "mandate_count": 6
+    },
+    {
+      "vertical": "sports_fitness",
+      "month": "2018-05",
+      "mandate_count": 136
+    },
+    {
+      "vertical": "tradesmen_and_non_professionals_services",
+      "month": "2018-05",
+      "mandate_count": 353
+    },
+    {
+      "vertical": "digital_services_media_telecoms",
+      "month": "2018-06",
+      "mandate_count": 96
+    },
+    {
+      "vertical": "healthcare",
+      "month": "2018-06",
+      "mandate_count": 19
+    },
+    {
+      "vertical": "professional_and_financial_services",
+      "month": "2018-06",
+      "mandate_count": 329
+    },
+    {
+      "vertical": "property",
+      "month": "2018-06",
+      "mandate_count": 110
+    },
+    {
+      "vertical": "societies_and_clubs",
+      "month": "2018-06",
+      "mandate_count": 10
+    },
+    {
+      "vertical": "sports_fitness",
+      "month": "2018-06",
+      "mandate_count": 192
+    },
+    {
+      "vertical": "tradesmen_and_non_professionals_services",
+      "month": "2018-06",
+      "mandate_count": 427
+    },
+    {
+      "vertical": "digital_services_media_telecoms",
+      "month": "2018-07",
+      "mandate_count": 95
+    },
+    {
+      "vertical": "healthcare",
+      "month": "2018-07",
+      "mandate_count": 22
+    },
+    {
+      "vertical": "professional_and_financial_services",
+      "month": "2018-07",
+      "mandate_count": 134
+    },
+    {
+      "vertical": "property",
+      "month": "2018-07",
+      "mandate_count": 65
+    },
+    {
+      "vertical": "societies_and_clubs",
+      "month": "2018-07",
+      "mandate_count": 1
+    },
+    {
+      "vertical": "sports_fitness",
+      "month": "2018-07",
+      "mandate_count": 568
+    },
+    {
+      "vertical": "tradesmen_and_non_professionals_services",
+      "month": "2018-07",
+      "mandate_count": 255
+    },
+    {
+      "vertical": "digital_services_media_telecoms",
+      "month": "2018-08",
+      "mandate_count": 63
+    },
+    {
+      "vertical": "healthcare",
+      "month": "2018-08",
+      "mandate_count": 17
+    },
+    {
+      "vertical": "professional_and_financial_services",
+      "month": "2018-08",
+      "mandate_count": 171
+    },
+    {
+      "vertical": "property",
+      "month": "2018-08",
+      "mandate_count": 54
+    },
+    {
+      "vertical": "sports_fitness",
+      "month": "2018-08",
+      "mandate_count": 304
+    },
+    {
+      "vertical": "tradesmen_and_non_professionals_services",
+      "month": "2018-08",
+      "mandate_count": 234
+    },
+    {
+      "vertical": "digital_services_media_telecoms",
+      "month": "2018-09",
+      "mandate_count": 98
+    },
+    {
+      "vertical": "healthcare",
+      "month": "2018-09",
+      "mandate_count": 21
+    },
+    {
+      "vertical": "professional_and_financial_services",
+      "month": "2018-09",
+      "mandate_count": 69
+    },
+    {
+      "vertical": "property",
+      "month": "2018-09",
+      "mandate_count": 39
+    },
+    {
+      "vertical": "societies_and_clubs",
+      "month": "2018-09",
+      "mandate_count": 2
+    },
+    {
+      "vertical": "sports_fitness",
+      "month": "2018-09",
+      "mandate_count": 365
+    },
+    {
+      "vertical": "tradesmen_and_non_professionals_services",
+      "month": "2018-09",
+      "mandate_count": 164
+    },
+    {
+      "vertical": "digital_services_media_telecoms",
+      "month": "2018-10",
+      "mandate_count": 80
+    },
+    {
+      "vertical": "healthcare",
+      "month": "2018-10",
+      "mandate_count": 17
+    },
+    {
+      "vertical": "professional_and_financial_services",
+      "month": "2018-10",
+      "mandate_count": 67
+    },
+    {
+      "vertical": "property",
+      "month": "2018-10",
+      "mandate_count": 47
+    },
+    {
+      "vertical": "sports_fitness",
+      "month": "2018-10",
+      "mandate_count": 341
+    },
+    {
+      "vertical": "tradesmen_and_non_professionals_services",
+      "month": "2018-10",
+      "mandate_count": 149
+    },
+    {
+      "vertical": "digital_services_media_telecoms",
+      "month": "2018-11",
+      "mandate_count": 66
+    },
+    {
+      "vertical": "healthcare",
+      "month": "2018-11",
+      "mandate_count": 19
+    },
+    {
+      "vertical": "professional_and_financial_services",
+      "month": "2018-11",
+      "mandate_count": 46
+    },
+    {
+      "vertical": "property",
+      "month": "2018-11",
+      "mandate_count": 30
+    },
+    {
+      "vertical": "societies_and_clubs",
+      "month": "2018-11",
+      "mandate_count": 2
+    },
+    {
+      "vertical": "sports_fitness",
+      "month": "2018-11",
+      "mandate_count": 270
+    },
+    {
+      "vertical": "tradesmen_and_non_professionals_services",
+      "month": "2018-11",
+      "mandate_count": 418
+    },
+    {
+      "vertical": "digital_services_media_telecoms",
+      "month": "2018-12",
+      "mandate_count": 64
+    },
+    {
+      "vertical": "healthcare",
+      "month": "2018-12",
+      "mandate_count": 45
+    },
+    {
+      "vertical": "professional_and_financial_services",
+      "month": "2018-12",
+      "mandate_count": 37
+    },
+    {
+      "vertical": "property",
+      "month": "2018-12",
+      "mandate_count": 24
+    },
+    {
+      "vertical": "sports_fitness",
+      "month": "2018-12",
+      "mandate_count": 699
+    },
+    {
+      "vertical": "tradesmen_and_non_professionals_services",
+      "month": "2018-12",
+      "mandate_count": 135
+    },
+    {
+      "vertical": "digital_services_media_telecoms",
+      "month": "2019-01",
+      "mandate_count": 93
+    },
+    {
+      "vertical": "healthcare",
+      "month": "2019-01",
+      "mandate_count": 80
+    },
+    {
+      "vertical": "professional_and_financial_services",
+      "month": "2019-01",
+      "mandate_count": 62
+    },
+    {
+      "vertical": "property",
+      "month": "2019-01",
+      "mandate_count": 31
+    },
+    {
+      "vertical": "societies_and_clubs",
+      "month": "2019-01",
+      "mandate_count": 4
+    },
+    {
+      "vertical": "sports_fitness",
+      "month": "2019-01",
+      "mandate_count": 658
+    },
+    {
+      "vertical": "tradesmen_and_non_professionals_services",
+      "month": "2019-01",
+      "mandate_count": 119
+    },
+    {
+      "vertical": "digital_services_media_telecoms",
+      "month": "2019-02",
+      "mandate_count": 76
+    },
+    {
+      "vertical": "healthcare",
+      "month": "2019-02",
+      "mandate_count": 91
+    },
+    {
+      "vertical": "professional_and_financial_services",
+      "month": "2019-02",
+      "mandate_count": 40
+    },
+    {
+      "vertical": "property",
+      "month": "2019-02",
+      "mandate_count": 50
+    },
+    {
+      "vertical": "societies_and_clubs",
+      "month": "2019-02",
+      "mandate_count": 2
+    },
+    {
+      "vertical": "sports_fitness",
+      "month": "2019-02",
+      "mandate_count": 370
+    },
+    {
+      "vertical": "tradesmen_and_non_professionals_services",
+      "month": "2019-02",
+      "mandate_count": 80
+    },
+    {
+      "vertical": "digital_services_media_telecoms",
+      "month": "2019-03",
+      "mandate_count": 2
+    },
+    {
+      "vertical": "healthcare",
+      "month": "2019-03",
+      "mandate_count": 4
+    },
+    {
+      "vertical": "professional_and_financial_services",
+      "month": "2019-03",
+      "mandate_count": 1
+    },
+    {
+      "vertical": "property",
+      "month": "2019-03",
+      "mandate_count": 4
+    },
+    {
+      "vertical": "sports_fitness",
+      "month": "2019-03",
+      "mandate_count": 18
+    },
+    {
+      "vertical": "tradesmen_and_non_professionals_services",
+      "month": "2019-03",
+      "mandate_count": 11
+    }
+  ]
+}

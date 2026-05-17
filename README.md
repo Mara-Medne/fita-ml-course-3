@@ -47,6 +47,7 @@ pip install -r requirements.txt
 python week1/01_extract_schema.py
 python week1/02_extract_full_schema.py
 python week1/03_generate_context.py
+
 python week1/04_extract_samples.py
 
 # 2. posms — SQL ar Gemini

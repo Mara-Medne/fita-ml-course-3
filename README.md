@@ -4,9 +4,9 @@ Python rīku komplekts, kas izvelk MySQL datubāzes shēmu, izmanto LLM (OpenRou
 
 ## Interaktīvā atskaite
 
-**[Skatīt uzlaboto atskaiti (GitHub Pages)](https://mara-medne.github.io/fita-ml-course-3/week1/advanced_report.html)**
+**[Skatīt interaktīvo atskaiti (GitHub Pages)](https://mara-medne.github.io/fita-ml-course-3/week1/interactive_report.html)**
 
-5 profesionālas vizualizācijas ar LLM-ģenerētiem ieskaitiem, SQL vaicājumu pārskatu un tumšā dizaina HTML atskaiti.
+Interaktīva HTML atskaite ar Chart.js — datumu filtri, nozaru atlase, dinamiskas diagrammas.
 
 ## Datubāze
 
